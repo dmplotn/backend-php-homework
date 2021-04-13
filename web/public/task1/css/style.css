@@ -1,0 +1,29 @@
+.basket-table {
+    display: table;
+    border-collapse: collapse;
+}
+
+.basket-table__head {
+    display: table-header-group;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.basket-table__body {
+    display: table-row-group;
+}
+
+.basket-table__row {
+    display: table-row;
+}
+
+.basket-table__col {
+    display: table-cell;
+    padding: 0 10px;
+    border: 1px solid black;
+}
+
+.basket-table__old-price {
+    color: crimson;
+    text-decoration: line-through;
+}
