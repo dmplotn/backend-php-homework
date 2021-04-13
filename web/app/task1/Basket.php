@@ -40,37 +40,40 @@ function getBasketItems(): array
 function prepareBasketItems(array $basketItems): array
 {
     return array_map(function ($item) {
-        ['name' => $name, 'article' => $article,'price' => $price] = $item;
+        ['name' => $name, 'article' => $article, 'price' => $price] = $item;
+        $discount = $item['discount'] ?? null;
 
-        $newItem = ['name' => $name, 'article' => $article];
         if ($price === 0) {
-            return $newItem;
+            return [
+                'name' => $name,
+                'article' => $article,
+                'type' => 'unavailable'
+            ];
         }
 
-        $newItem['price'] = formatPrice($price);
-        if (!array_key_exists('discount', $item)) {
-            return $newItem;
+        if ($discount === null) {
+            return [
+                'name' => $name,
+                'article' => $article,
+                'price' => formatPrice($price),
+                'type' => 'no_discount'
+            ];
         }
 
-        $discountInPercentages = $item['discount'] / 100;
+        $discountInPercentages = $discount / 100;
         $priceAfterDiscount = $price - $price * $discountInPercentages;
-        $newItem['priceAfterDiscount'] = formatPrice($priceAfterDiscount);
 
-        return $newItem;
+        return [
+            'name' => $name,
+            'article' => $article,
+            'price' => formatPrice($price),
+            'priceAfterDiscount' => formatPrice($priceAfterDiscount),
+            'type' => 'discount'
+        ];
     }, $basketItems);
 }
 
 function formatPrice(int $price): string
 {
     return number_format($price, 2, '.', ' ') . ' ₽';
-}
-
-function isUnavailableItem(array $item): bool
-{
-    return !array_key_exists('price', $item);
-}
-
-function isDiscountItem(array $item): bool
-{
-    return array_key_exists('priceAfterDiscount', $item);
 }
