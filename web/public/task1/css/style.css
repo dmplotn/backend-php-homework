@@ -24,6 +24,7 @@
 }
 
 .basket-table__old-price {
-    color: crimson;
     text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
 }
