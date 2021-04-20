@@ -21,10 +21,16 @@ function getUserByLogin(string $login): array
     return makeUser($login, $password);
 }
 
-function saveUser(array $user): void
+function saveUser(array $user): bool
 {
     $login = getLogin($user);
     $password = getPassword($user);
 
-    insertRow(['login' => $login, 'password' => $password]);
+    try {
+        insertRow(['login' => $login, 'password' => $password]);
+    } catch (\RuntimeException $e) {
+        return false;
+    }
+
+    return true;
 }

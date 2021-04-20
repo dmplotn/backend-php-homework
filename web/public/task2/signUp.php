@@ -45,9 +45,17 @@ if ($errors !== []) {
 
 $user = makeUser($login, password_hash($password, PASSWORD_DEFAULT));
 
-try {
-    saveUser($user);
-} catch (\RuntimeException $e) {
+// try {
+//     saveUser($user);
+// } catch (\RuntimeException $e) {
+    // $response['status'] = 'sign up error';
+    // $response['errors']['signUp'] = 'Пользователь не может быть зарегистрирован';
+    // http_response_code(422);
+    // echo json_encode($response);
+    // exit;
+// }
+
+if (!saveUser($user)) {
     $response['status'] = 'sign up error';
     $response['errors']['signUp'] = 'Пользователь не может быть зарегистрирован';
     http_response_code(422);
