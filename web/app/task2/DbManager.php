@@ -42,9 +42,9 @@ function getRowsWhere(array $required): array
     return array_values($selectedRows);
 }
 
-function canInsertRow(array $row): bool
+function canInsertRow(array $data): bool
 {
-    return checkStructure($row) && checkUnique($row);
+    return checkStructure($data) && checkUnique($data);
 }
 
 function checkStructure(array $data): bool
@@ -57,8 +57,8 @@ function checkStructure(array $data): bool
     return $diff1 === [] && $diff2 === [];
 }
 
-function checkUnique(array $row): bool
+function checkUnique(array $data): bool
 {
-    $rows = getRowsWhere([UNIQUE_FIELD_NAME => $row[UNIQUE_FIELD_NAME]]);
+    $rows = getRowsWhere([UNIQUE_FIELD_NAME => $data[UNIQUE_FIELD_NAME]]);
     return $rows === [];
 }
