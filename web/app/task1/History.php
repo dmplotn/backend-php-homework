@@ -6,6 +6,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../app/task1/Utils.php';
 
 use function Task1\Utils\{getCurrentPageName, getPathForCurrentPage};
 
+const HISTORY_SIZE = 3;
+
 function getHistory(): array
 {
     return json_decode($_COOKIE['history'] ?? '{}', true);
@@ -31,13 +33,15 @@ function updateHistory(): void
 
     array_push($history, [$currentPath, $currentPageName]);
 
-    if (count($history) > 3) {
+    if (count($history) > HISTORY_SIZE) {
         array_shift($history);
     }
 
     $firstPathInHistory = $history[0][0];
 
-    if (count($history) === 3 && $currentPath === $firstPathInHistory) {
+    $containRepeats = count($history) === HISTORY_SIZE && $currentPath === $firstPathInHistory;
+
+    if ($containRepeats) {
         array_shift($history);
     }
 
