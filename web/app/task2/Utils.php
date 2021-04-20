@@ -2,7 +2,7 @@
 
 namespace Task2\Utils;
 
-function getCurrentPath()
+function getCurrentPath(): string
 {
     return $_SERVER['PHP_SELF'];
 }

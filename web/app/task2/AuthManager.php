@@ -28,13 +28,13 @@ function signIn(array $user): void
     $_SESSION['login'] = getLogin($user);
 }
 
-function signOut()
+function signOut(): void
 {
     unset($_SESSION['login']);
     session_destroy();
 }
 
-function canUserSignIn($user, $password)
+function canUserSignIn($user, $password): bool
 {
     if ($user === null) {
         return false;

@@ -2,7 +2,7 @@
 
 namespace Task2\Models\User;
 
-function makeUser($login, $password)
+function makeUser(string $login, string $password): array
 {
     return [
         'login' => $login,
@@ -10,12 +10,12 @@ function makeUser($login, $password)
     ];
 }
 
-function getLogin($user)
+function getLogin(array $user): string
 {
     return $user['login'];
 }
 
-function getPassword($user)
+function getPassword(array $user): string
 {
     return $user['password'];
 }

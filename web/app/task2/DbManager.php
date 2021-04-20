@@ -26,7 +26,7 @@ function insertRow($data): void
     file_put_contents(DB_PATH, json_encode($data) . "\n", FILE_APPEND);
 }
 
-function getRowsWhere(array $required)
+function getRowsWhere(array $required): array
 {
     if ($required === []) {
         return [];
@@ -42,12 +42,12 @@ function getRowsWhere(array $required)
     return array_values($selectedRows);
 }
 
-function canInsertRow($row): bool
+function canInsertRow(array $row): bool
 {
     return checkStructure($row) && checkUnique($row);
 }
 
-function checkStructure($data): bool
+function checkStructure(array $data): bool
 {
     $fieldsNames = array_keys($data);
 
@@ -57,7 +57,7 @@ function checkStructure($data): bool
     return $diff1 === [] && $diff2 === [];
 }
 
-function checkUnique($row): bool
+function checkUnique(array $row): bool
 {
     $rows = getRowsWhere([UNIQUE_FIELD_NAME => $row[UNIQUE_FIELD_NAME]]);
     return $rows === [];
