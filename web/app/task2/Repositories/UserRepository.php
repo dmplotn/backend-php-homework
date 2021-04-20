@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../app/task2/DbManager.php';
 use function Task2\Models\User\{makeUser, getLogin, getPassword};
 use function Task2\DbManager\{getRowsWhere, insertRow};
 
-function getUserByLogin(string $login): array
+function getUserByLogin(string $login)
 {
     $rows = getRowsWhere(['login' => $login]);
 
