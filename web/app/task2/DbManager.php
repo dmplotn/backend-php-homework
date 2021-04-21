@@ -23,7 +23,11 @@ function insertRow($data): void
         throw new \RuntimeException('DbManager: one of the fields is not unique');
     }
 
+    set_error_handler(function ($errno, $errstr) {
+        throw new \RuntimeException($errstr);
+    });
     file_put_contents(DB_PATH, json_encode($data) . "\n", FILE_APPEND);
+    restore_error_handler();
 }
 
 function getRowsWhere(array $required): array
