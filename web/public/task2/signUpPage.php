@@ -19,30 +19,39 @@ if (isUserSignedIn()) {
     <title>Регистрация пользователя</title>
     <script src="scripts/errorMessages.js"></script>
     <script src="scripts/signUp.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
     <?php require $_SERVER['DOCUMENT_ROOT'] . '/task2/inc/header.php' ?>
-    <main>
-        <h1>Регистрация пользователя</h1>
-        <form onsubmit="signUp(); return false">
-            <div>
+    <main class="container mx-auto w-2/5">
+        <h1 class="text-4xl font-bold my-4">Регистрация пользователя</h1>
+        <form class="py-5" onsubmit="signUp(); return false">
+            <div class="my-5">
                 <label for="login">Логин:</label>
-                <input type="text" id="login" name="login">
-                <ul class="errorContainer"></ul>
+                <input class="border-2 border-gray-300" type="text" id="login" name="login">
+                <ul class="errorContainer m-4 text-sm text-red-600"></ul>
             </div>
-            <div>
+            <div class="my-5">
                 <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password">
-                <ul class="errorContainer"></ul>
+                <input class="border-2 border-gray-300" type="password" id="password" name="password">
+                <ul class="errorContainer m-4 text-sm text-red-600"></ul>
             </div>
-            <div>
+            <div class="my-5">
                 <label for="passwordConfirmation">Подтверждение пароля:</label>
-                <input type="password" id="passwordConfirmation" name="passwordConfirmation">
-                <ul class="errorContainer"></ul>            
+                <input
+                    class="border-2 border-gray-300"
+                    type="password"
+                    id="passwordConfirmation"
+                    name="passwordConfirmation"
+                >
+                <ul class="errorContainer m-4 text-sm text-red-600"></ul>            
             </div>
-            <ul class="errorContainer" id="signUp"></ul>
+            <ul class="errorContainer m-4 text-sm text-red-600" id="signUp"></ul>
             <p>
-                <button type="submit">Зарегистрироваться</button>
+                <button
+                    class="bg-blue-200 border-2 border-blue-400 p-2 rounded-md"
+                    type="submit"
+                >Зарегистрироваться</button>
             </p>
         </form>
     </main>

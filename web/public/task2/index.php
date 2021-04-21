@@ -19,11 +19,12 @@ $login = getSignedInUserLogin();
 <head>
     <meta charset="UTF-8">
     <title>Главная страница</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
     <?php require $_SERVER['DOCUMENT_ROOT'] . '/task2/inc/header.php' ?>
-    <main>
-        <h1>Привет, <?= htmlspecialchars($login) ?>!</h1>
+    <main class="container mx-auto w-2/5">
+        <h1 class="text-4xl font-bold my-4">Привет, <?= htmlspecialchars($login) ?>!</h1>
     </main>
 </body>
 </html>
