@@ -49,7 +49,7 @@ if (isUserSignedIn()) {
             <ul class="errorContainer m-4 text-sm text-red-600" id="signUp"></ul>
             <p>
                 <button
-                    class="bg-blue-200 border-2 border-blue-400 p-2 rounded-md"
+                    class="bg-blue-200 p-2 rounded-md hover:bg-blue-400 focus:outline-none"
                     type="submit"
                 >Зарегистрироваться</button>
             </p>
