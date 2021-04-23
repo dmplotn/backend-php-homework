@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Получить название города по IP-адресу</title>
+</head>
+<body>
+    <h1>Получить название города по IP-адресу</h1>
+    <form onsubmit="getCityNameByIp();">
+        <p>
+            <label for="cityName">Название города:</label>
+        </p>
+        <p>
+            <input type="text" id="cityName" name="cityName">
+        </p>
+        <button type="submit">Получить название города</button>
+    </form>
+    <p id="result"></p>
+</body>
+<script src="scripts/getCityNameByIp.js"></script>
+</html>
