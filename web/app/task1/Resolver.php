@@ -27,6 +27,10 @@ class Resolver
     {
         session_write_close();
 
+        if (!IpAddressValidator::validate($ip)) {
+            throw new ValidationException('IP address is invalid');
+        }
+
         curl_setopt($this->handler, CURLOPT_RETURNTRANSFER, true);
 
         $url = "http://{$this->serverAddress}/task1/server.php?ip={$ip}";
