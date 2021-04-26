@@ -11,16 +11,12 @@ if (isset($_GET['ip'])) {
 
     try {
         $trimmedIp = trim($ip);
-        if (!IpAddressValidator::validate($trimmedIp)) {
-            throw new ValidationException('IP address is invalid');
-        }
-
         $resolver = new Resolver(SERVER_ADDRESS);
-        $resultMessage = $resolver->resolve(trim($ip));
+        $resultMessage = $resolver->resolve(trim($trimmedIp));
     } catch (ResolvingException $e) {
         $errorMessage = 'При запросе возникла ошибка';
     } catch (ValidationException $e) {
-        $errorMessage = 'Введен неверный ip адрес';
+        $errorMessage = 'Введен некорректный ip адрес';
     }
 }
 
