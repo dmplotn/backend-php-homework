@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Логирование данных</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="container mx-auto w-2/5">
+    <h1 class="text-4xl font-bold my-4">Логирование данных</h1>
+    <form class="py-5" onsubmit="logProperties(); return false">
+        <div class="mb-6">
+            <p>
+                <label for="workerType">Выберите профессию</label>
+            </p>
+            <select class="border-2 border-gray-400" onchange="displayProperties(); return false" id="workerType">
+                <option value="CarDriver" selected>CarDriver</option>
+                <option value="MedicalDoctor">MedicalDoctor</option>
+                <option value="MilitaryPersonnel">MilitaryPersonnel</option>
+            </select>
+        </div>
+        <div id="propertyContainer"></div>
+        <p class="my-4 text-sm text-green-600" id="successMessageContainer"></p>
+        <p class="my-4 text-sm text-red-600" id="errorMessageContainer"></p>
+        <button
+            class="mt-4 bg-blue-200 p-2 rounded-md hover:bg-blue-400 focus:outline-none"
+            type="submit"
+        >Записать данные в лог</button>
+    </form>
+</body>
+<script src="scripts/displayProperties.js"></script>
+<script src="scripts/logProperties.js"></script>
+<script src="scripts/init.js"></script>
+</html>
