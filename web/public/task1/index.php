@@ -10,9 +10,8 @@ if (isset($_GET['ip'])) {
     ['ip' => $ip] = $_GET;
 
     try {
-        $trimmedIp = trim($ip);
         $resolver = new Resolver(SERVER_ADDRESS);
-        $resultMessage = $resolver->resolve(trim($trimmedIp));
+        $resultMessage = $resolver->resolve($ip);
     } catch (ResolvingException $e) {
         $errorMessage = 'При запросе возникла ошибка';
     } catch (ValidationException $e) {
