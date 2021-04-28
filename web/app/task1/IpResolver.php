@@ -1,6 +1,6 @@
 <?php
 
-class Resolver
+class IpResolver
 {
     private $serverAddress;
     private $handler;

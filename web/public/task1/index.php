@@ -2,7 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/autoload.php';
 
-const SERVER_ADDRESS = '172.18.0.2';
+const SERVER_ADDRESS = '172.19.0.5';
 
 session_start();
 
@@ -10,7 +10,7 @@ if (isset($_GET['ip'])) {
     ['ip' => $ip] = $_GET;
 
     try {
-        $resolver = new Resolver(SERVER_ADDRESS);
+        $resolver = new IpResolver(SERVER_ADDRESS);
         $resultMessage = $resolver->resolve($ip);
     } catch (ResolvingException $e) {
         $errorMessage = 'При запросе возникла ошибка';
