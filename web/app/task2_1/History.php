@@ -22,7 +22,8 @@ class History
             return;
         }
 
-        array_push($history, [$currentPath, $currentPageName]);
+        // array_push($history, [$currentPath, $currentPageName]);
+        $history[] = [$currentPath, $currentPageName];
 
         if (count($history) > self::HISTORY_SIZE) {
             array_shift($history);
