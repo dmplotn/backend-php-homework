@@ -13,6 +13,8 @@ try {
     exit;
 }
 
-$history = History::getReversedHistory();
+$history = new History();
 
-History::updateHistory();
+$historyData = $history->getReversedData();
+
+$history->update();

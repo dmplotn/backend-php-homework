@@ -4,58 +4,59 @@ class History
 {
     private const HISTORY_MAX_SIZE = 3;
 
-    public static function getHistory(): array
+    private $data;
+
+    public function __construct()
     {
-        return json_decode($_COOKIE['history'] ?? '{}', true);
+        $this->data = json_decode($_COOKIE['history'] ?? '{}', true);
     }
 
-    public static function updateHistory(): void
+    private function getSize(): int
     {
-        $history = self::getHistory();
+        return count($this->data);
+    }
 
+    public function update(): void
+    {
         $currentPageName = Pages::getCurrentPageName();
         $currentPath = Pages::getPathForCurrentPage();
 
         $addedItem = [$currentPath, $currentPageName];
 
-        $lastPath = $history[count($history) - 1][0] ?? null;
+        $lastPath = $this->data[$this->getSize() - 1][0] ?? null;
 
         if ($lastPath === $currentPath) {
             return;
         }
 
-        $checkedItemIndex = self::getHistorySize($history) === self::HISTORY_MAX_SIZE ? 1 : 0;
+        $checkedItemIndex = $this->getSize() === self::HISTORY_MAX_SIZE ? 1 : 0;
 
-        $checkedPath = array_slice($history, -2)[0][0];
+        $checkedPath = array_slice($this->data, -2)[0][0];
 
-        $history[] = $addedItem;
+        $this->data[] = $addedItem;
 
         if ($checkedPath === $currentPath) {
-            unset($history[$checkedItemIndex]);
-            self::saveHistory(array_values($history));
+            unset($this->data[$checkedItemIndex]);
+            $this->data = array_values($this->data);
+            $this->save();
             return;
         }
 
-        if (self::getHistorySize($history) > self::HISTORY_MAX_SIZE) {
-            array_shift($history);
+        if ($this->getSize() > self::HISTORY_MAX_SIZE) {
+            array_shift($this->data);
+            $this->data = array_values($this->data);
         }
 
-        self::saveHistory($history);
+        $this->save();
     }
 
-    public static function getReversedHistory(): array
+    private function save(): void
     {
-        $history = self::getHistory();
-        return array_reverse($history);
+        setCookie('history', json_encode($this->data), 0, "/task2_1/");
     }
 
-    private static function saveHistory(array $history): void
+    public function getReversedData(): array
     {
-        setCookie('history', json_encode($history), 0, "/task2_1/");
-    }
-
-    public static function getHistorySize(array $history): int
-    {
-        return count($history);
+        return array_reverse($this->data);
     }
 }

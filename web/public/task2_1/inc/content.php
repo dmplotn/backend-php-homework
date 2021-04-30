@@ -16,7 +16,7 @@
                 <h2 class="text-2xl">История переходов</h2>
             </div>
             <ul class="">
-                <?php foreach ($history as [$path, $pageName]) : ?>
+                <?php foreach ($historyData as [$path, $pageName]) : ?>
                     <li><a class="hover:underline" href="<?= $path ?>"><?= $pageName ?></a></li>
                 <?php endforeach; ?>  
             </ul>
