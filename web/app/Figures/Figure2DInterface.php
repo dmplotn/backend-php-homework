@@ -1,8 +1,6 @@
 <?php
 
-namespace FigureCalculator\Figures\Figures2D;
-
-use FigureCalculator\Figures\FigureInterface;
+namespace FigureCalculator\Figures;
 
 interface Figure2DInterface extends FigureInterface
 {

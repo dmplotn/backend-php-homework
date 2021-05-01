@@ -1,8 +1,8 @@
 <?php
 
-namespace FigureCalculator\Figures\Figures2D;
+namespace FigureCalculator\Figures;
 
-class Circle implements Figure2DInterface
+class Sphere implements Figure3DInterface
 {
     /**
      * @var float
@@ -30,14 +30,14 @@ class Circle implements Figure2DInterface
      */
     public function getArea(): float
     {
-        return pi() * ($this->getRadius() ** 2);
+        return 4 * pi() * ($this->getRadius() ** 2);
     }
 
     /**
      * @return float
      */
-    public function getPerimeter(): float
+    public function getVolume(): float
     {
-        return 2 * pi() * $this->getRadius();
+        return (4 * pi() * ($this->getRadius() ** 3)) / 3;
     }
 }

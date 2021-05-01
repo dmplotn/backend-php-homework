@@ -1,6 +1,6 @@
 <?php
 
-namespace FigureCalculator\Figures\Figures2D;
+namespace FigureCalculator\Figures;
 
 class Rectangle implements Figure2DInterface
 {

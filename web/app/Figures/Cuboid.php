@@ -1,6 +1,6 @@
 <?php
 
-namespace FigureCalculator\Figures\Figures3D;
+namespace FigureCalculator\Figures;
 
 class Cuboid implements Figure3DInterface
 {
