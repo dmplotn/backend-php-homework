@@ -2,6 +2,8 @@
 
 namespace FigureCalculator\Figures;
 
+use FigureCalculator\Validators\FigurePropertyValidator;
+
 class Cuboid implements Figure3DInterface
 {
     /**
@@ -24,8 +26,10 @@ class Cuboid implements Figure3DInterface
      * @param float $length
      * @param float $height
      */
-    public function __construct(float $width, float $length, float $height)
+    public function __construct(float $width = 1, float $length = 1, float $height = 1)
     {
+        FigurePropertyValidator::validateMultipleProperties($width, $length, $height);
+
         $this->width = $width;
         $this->length = $length;
         $this->height = $height;
@@ -56,6 +60,42 @@ class Cuboid implements Figure3DInterface
     }
 
     /**
+     * @param float $width
+     *
+     * @return void
+     */
+    public function setWidth(float $width): void
+    {
+        FigurePropertyValidator::validate($width);
+
+        $this->width = $width;
+    }
+
+    /**
+     * @param float $length
+     *
+     * @return void
+     */
+    public function setLength(float $length): void
+    {
+        FigurePropertyValidator::validate($length);
+
+        $this->length = $length;
+    }
+
+    /**
+     * @param float $height
+     *
+     * @return void
+     */
+    public function setHeight(float $height): void
+    {
+        FigurePropertyValidator::validate($height);
+
+        $this->height = $height;
+    }
+
+    /**
      * @return float
      */
     public function getArea(): float
@@ -73,5 +113,13 @@ class Cuboid implements Figure3DInterface
     public function getVolume(): float
     {
         return $this->getWidth() * $this->getLength() * $this->getHeight();
+    }
+
+    /**
+     * @return array
+     */
+    public static function getClassPropNames(): array
+    {
+        return array_keys(get_class_vars(self::class));
     }
 }

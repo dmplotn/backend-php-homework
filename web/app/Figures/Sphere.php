@@ -2,6 +2,11 @@
 
 namespace FigureCalculator\Figures;
 
+use FigureCalculator\Validators\FigurePropertyValidator;
+
+/**
+ * Sphere
+ */
 class Sphere implements Figure3DInterface
 {
     /**
@@ -12,8 +17,10 @@ class Sphere implements Figure3DInterface
     /**
      * @param float $radius
      */
-    public function __construct(float $radius)
+    public function __construct(float $radius = 1)
     {
+        FigurePropertyValidator::validate($radius);
+
         $this->radius = $radius;
     }
 
@@ -23,6 +30,18 @@ class Sphere implements Figure3DInterface
     public function getRadius(): float
     {
         return $this->radius;
+    }
+
+    /**
+     * @param float $radius
+     *
+     * @return void
+     */
+    public function setRadius(float $radius): void
+    {
+        FigurePropertyValidator::validate($radius);
+
+        $this->radius = $radius;
     }
 
     /**
@@ -39,5 +58,13 @@ class Sphere implements Figure3DInterface
     public function getVolume(): float
     {
         return (4 * pi() * ($this->getRadius() ** 3)) / 3;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getClassPropNames(): array
+    {
+        return array_keys(get_class_vars(self::class));
     }
 }

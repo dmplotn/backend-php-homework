@@ -2,6 +2,11 @@
 
 namespace FigureCalculator\Figures;
 
+use FigureCalculator\Validators\FigurePropertyValidator;
+
+/**
+ * Rectangle
+ */
 class Rectangle implements Figure2DInterface
 {
     /**
@@ -20,6 +25,8 @@ class Rectangle implements Figure2DInterface
      */
     public function __construct(float $width, float $length)
     {
+        FigurePropertyValidator::validateMultipleProperties($width, $length);
+
         $this->width = $width;
         $this->length = $length;
     }
@@ -33,11 +40,35 @@ class Rectangle implements Figure2DInterface
     }
 
     /**
+     * @param mixed $width
+     *
+     * @return void
+     */
+    public function setWidth(float $width): void
+    {
+        FigurePropertyValidator::validate($width);
+
+        $this->width = $width;
+    }
+
+    /**
      * @return float
      */
     public function getLength(): float
     {
         return $this->length;
+    }
+
+    /**
+     * @param float $length
+     *
+     * @return void
+     */
+    public function setLength(float $length): void
+    {
+        FigurePropertyValidator::validate($length);
+
+        $this->length = $length;
     }
 
     /**
@@ -54,5 +85,13 @@ class Rectangle implements Figure2DInterface
     public function getPerimeter(): float
     {
         return ($this->getWidth() + $this->getLength()) * 2;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getClassPropNames(): array
+    {
+        return array_keys(get_class_vars(self::class));
     }
 }

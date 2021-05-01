@@ -2,6 +2,9 @@
 
 namespace FigureCalculator\Figures;
 
+/**
+ * FigureInterface
+ */
 interface FigureInterface
 {
     /**
