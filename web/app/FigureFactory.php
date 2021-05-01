@@ -3,9 +3,7 @@
 namespace FigureCalculator;
 
 use FigureCalculator\Figures\FigureInterface;
-use FigureCalculator\Exceptions\ClassExistenceException;
-use FigureCalculator\Exceptions\PropertyExistenceException;
-use FigureCalculator\Exceptions\MethodExistenceException;
+use FigureCalculator\Exceptions\{ClassExistenceException, PropertyExistenceException, MethodExistenceException};
 
 /**
  * FigureFactory
