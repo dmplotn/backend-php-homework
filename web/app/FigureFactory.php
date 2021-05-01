@@ -7,6 +7,9 @@ use FigureCalculator\Exceptions\ClassExistenceException;
 use FigureCalculator\Exceptions\PropertyExistenceException;
 use FigureCalculator\Exceptions\MethodExistenceException;
 
+/**
+ * FigureFactory
+ */
 class FigureFactory
 {
     private const PREFIX = '\FigureCalculator\Figures\\';
