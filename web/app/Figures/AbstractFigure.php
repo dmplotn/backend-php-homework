@@ -12,6 +12,9 @@ abstract class AbstractFigure
      */
     abstract public function getArea(): float;
 
+    /**
+     * @return array
+     */
     public static function getClassPropNames(): array
     {
         return array_keys(get_class_vars(static::class));
