@@ -13,6 +13,11 @@ abstract class AbstractFigure
     abstract public function getArea(): float;
 
     /**
+     * @return float
+     */
+    abstract public function getRatio(): float;
+
+    /**
      * @return array
      */
     public static function getClassPropNames(): array
