@@ -24,4 +24,20 @@ abstract class AbstractFigure
     {
         return array_keys(get_class_vars(static::class));
     }
+
+    /**
+     * @return string
+     */
+    public function getFullClassName(): string
+    {
+        return static::class;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProperties(): array
+    {
+        return get_object_vars($this);
+    }
 }
