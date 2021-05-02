@@ -7,17 +7,17 @@ use FigureCalculator\Validators\FigurePropertyValidator;
 /**
  * Rectangle
  */
-class Rectangle implements Figure2DInterface
+class Rectangle extends AbstractFigure2D
 {
     /**
      * @var float
      */
-    private float $width;
+    protected float $width;
 
     /**
      * @var float
      */
-    private float $length;
+    protected float $length;
 
     /**
      * @param float $width
@@ -85,13 +85,5 @@ class Rectangle implements Figure2DInterface
     public function getPerimeter(): float
     {
         return ($this->getWidth() + $this->getLength()) * 2;
-    }
-
-    /**
-     * @return array
-     */
-    public static function getClassPropNames(): array
-    {
-        return array_keys(get_class_vars(self::class));
     }
 }

@@ -4,22 +4,22 @@ namespace FigureCalculator\Figures;
 
 use FigureCalculator\Validators\FigurePropertyValidator;
 
-class Cuboid implements Figure3DInterface
+class Cuboid extends AbstractFigure3D
 {
     /**
      * @var float
      */
-    private float $width;
+    protected float $width;
 
     /**
      * @var float
      */
-    private float $length;
+    protected float $length;
 
     /**
      * @var float
      */
-    private float $height;
+    protected float $height;
 
     /**
      * @param float $width
@@ -113,13 +113,5 @@ class Cuboid implements Figure3DInterface
     public function getVolume(): float
     {
         return $this->getWidth() * $this->getLength() * $this->getHeight();
-    }
-
-    /**
-     * @return array
-     */
-    public static function getClassPropNames(): array
-    {
-        return array_keys(get_class_vars(self::class));
     }
 }

@@ -7,12 +7,12 @@ use FigureCalculator\Validators\FigurePropertyValidator;
 /**
  * Sphere
  */
-class Sphere implements Figure3DInterface
+class Sphere extends AbstractFigure3D
 {
     /**
      * @var float
      */
-    private float $radius;
+    protected float $radius;
 
     /**
      * @param float $radius
@@ -58,13 +58,5 @@ class Sphere implements Figure3DInterface
     public function getVolume(): float
     {
         return (4 * pi() * ($this->getRadius() ** 3)) / 3;
-    }
-
-    /**
-     * @return array
-     */
-    public static function getClassPropNames(): array
-    {
-        return array_keys(get_class_vars(self::class));
     }
 }

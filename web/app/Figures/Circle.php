@@ -4,12 +4,12 @@ namespace FigureCalculator\Figures;
 
 use FigureCalculator\Validators\FigurePropertyValidator;
 
-class Circle implements Figure2DInterface
+class Circle extends AbstractFigure2D
 {
     /**
      * @var float
      */
-    private float $radius;
+    protected float $radius;
 
     /**
      * @param float $radius
@@ -55,13 +55,5 @@ class Circle implements Figure2DInterface
     public function getPerimeter(): float
     {
         return 2 * pi() * $this->getRadius();
-    }
-
-    /**
-     * @return array
-     */
-    public static function getClassPropNames(): array
-    {
-        return array_keys(get_class_vars(self::class));
     }
 }

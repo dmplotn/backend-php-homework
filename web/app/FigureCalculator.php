@@ -2,7 +2,7 @@
 
 namespace FigureCalculator;
 
-use FigureCalculator\Figures\FigureInterface;
+use FigureCalculator\Figures\AbstractFigure;
 use FigureCalculator\Exceptions\MethodExistenceException;
 
 /**
@@ -11,22 +11,22 @@ use FigureCalculator\Exceptions\MethodExistenceException;
 class FigureCalculator
 {
     /**
-     * @var FigureInterface
+     * @var AbstractFigure
      */
-    private FigureInterface $figure;
+    private AbstractFigure $figure;
 
     /**
      * @param string $figureName
      */
-    public function __construct(FigureInterface $figure)
+    public function __construct(AbstractFigure $figure)
     {
         $this->figure = $figure;
     }
 
     /**
-     * @return FigureInterface
+     * @return AbstractFigure
      */
-    public function getFigure(): FigureInterface
+    public function getFigure(): AbstractFigure
     {
         return $this->figure;
     }

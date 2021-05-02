@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace FigureCalculator;
 
-use FigureCalculator\Figures\FigureInterface;
 use FigureCalculator\Exceptions\{ClassExistenceException, PropertyExistenceException, MethodExistenceException};
+use FigureCalculator\Figures\AbstractFigure;
 
 /**
  * FigureFactory
@@ -18,9 +18,9 @@ class FigureFactory
      * @param string $figureName
      * @param array $properties
      *
-     * @return FigureInterface
+     * @return AbstractFigure
      */
-    public static function create(string $figureName, array $properties): FigureInterface
+    public static function create(string $figureName, array $properties): AbstractFigure
     {
         $fullClassName = self::PREFIX . $figureName;
 
@@ -47,9 +47,9 @@ class FigureFactory
      * @param string $fullClassName
      * @param array $properties
      *
-     * @return FigureInterface
+     * @return AbstractFigure
      */
-    private static function getInitializedFigure(string $fullClassName, array $properties): FigureInterface
+    private static function getInitializedFigure(string $fullClassName, array $properties): AbstractFigure
     {
         $figure  = new $fullClassName();
 
