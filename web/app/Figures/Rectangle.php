@@ -76,7 +76,7 @@ class Rectangle implements Figure2DInterface
      */
     public function getArea(): float
     {
-        return $this->getWidth() * $this->getWidth();
+        return $this->getWidth() * $this->getLength();
     }
 
     /**
