@@ -10,6 +10,8 @@ use FigureCalculator\Exceptions\MethodExistenceException;
  */
 class FigureCalculator
 {
+    use FigureLoggerTrait;
+
     /**
      * @var AbstractFigure
      */
@@ -41,11 +43,17 @@ class FigureCalculator
         $figure = $this->getFigure();
 
         if (!method_exists($figure, $operationName)) {
+            self::log('FAIL', $figure, $operationName);
+
             throw new MethodExistenceException(
                 "Method '{$operationName}' is not exists on current figure object."
             );
         }
 
-        return $figure->$operationName();
+        $result = $figure->$operationName();
+
+        self::log('SUCCESS', $figure, $operationName, $result);
+
+        return  $result;
     }
 }
