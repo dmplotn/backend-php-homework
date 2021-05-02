@@ -24,6 +24,7 @@
     - getArea (доступен для всех типов фигур)
     - getPerimeter (доступен для: Rectangle, Circle)
     - getVolume (доступен для: Cuboid, Sphere)
+    - getRatio (доступен для всех типов фигур)
    
   - propName=[double] (вместо propName должно быть подставлено одно из следующих свойств)
     - для Rectangle: width, length
