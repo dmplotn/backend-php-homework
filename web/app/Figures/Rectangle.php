@@ -23,7 +23,7 @@ class Rectangle implements Figure2DInterface
      * @param float $width
      * @param float $length
      */
-    public function __construct(float $width, float $length)
+    public function __construct(float $width = 1, float $length = 1)
     {
         FigurePropertyValidator::validateMultipleProperties($width, $length);
 
