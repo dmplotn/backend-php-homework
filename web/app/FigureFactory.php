@@ -31,6 +31,9 @@ class FigureFactory
         $classPropNames = $fullClassName::getClassPropNames();
         $givenPropNames = array_keys($properties);
 
+        sort($classPropNames);
+        sort($givenPropNames);
+
         if ($classPropNames !== $givenPropNames) {
             throw new PropertyExistenceException(
                 "Class '{$fullClassName}' has different property set."
