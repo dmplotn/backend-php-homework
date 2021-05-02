@@ -35,11 +35,11 @@ try {
 
     $result = $calculator->calculate($operationName);
 } catch (
-    // MissingRequestParamException |
-    // ClassExistenceException |
-    // PropertyExistenceException |
-    // MethodExistenceException |
-    // TypeError |
+    MissingRequestParamException |
+    ClassExistenceException |
+    PropertyExistenceException |
+    MethodExistenceException |
+    TypeError |
     \DomainException $e
 ) {
     http_response_code(422);
