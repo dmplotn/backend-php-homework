@@ -17,7 +17,7 @@ header('Content-Type: application/json');
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(404);
     $response['status'] = 'error';
-    $response['message'] = 'Страница не найдена';
+    $response['message'] = 'Ресурс не найден.';
     echo json_encode($response);
     exit;
 }
@@ -50,6 +50,6 @@ try {
 }
 
 $response['status'] = 'success';
-$response['message'] = 'Запрос успешно выполнен';
+$response['message'] = 'Запрос успешно выполнен.';
 $response['result'] = $result;
 echo json_encode($response);
