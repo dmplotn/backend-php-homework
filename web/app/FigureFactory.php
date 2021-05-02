@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FigureCalculator;
 
 use FigureCalculator\Figures\FigureInterface;
@@ -48,8 +50,8 @@ class FigureFactory
     {
         $figure  = new $fullClassName();
 
-        foreach ($properties as $name => $value) {
-            $setterName = 'set' . ucfirst(strtolower($name));
+        foreach ($properties as $propName => $value) {
+            $setterName = "set{$propName}";
 
             if (!method_exists($figure, $setterName)) {
                 throw new MethodExistenceException(
@@ -57,7 +59,9 @@ class FigureFactory
                 );
             }
 
-            $figure->$setterName($value);
+            $filteredValue = filter_var($value, FILTER_VALIDATE_FLOAT);
+
+            $figure->$setterName($filteredValue);
         }
 
         return $figure;
