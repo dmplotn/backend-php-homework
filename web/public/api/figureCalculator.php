@@ -44,7 +44,7 @@ try {
 ) {
     http_response_code(422);
     $response['status'] = 'error';
-    $response['message'] = 'Запрос был отправлен с не правильным набором параметров.';
+    $response['message'] = 'Запрос был отправлен с неправильным набором параметров.';
     echo json_encode($response);
     exit;
 }
