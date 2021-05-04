@@ -26,7 +26,7 @@
     - getVolume (доступен для: Cuboid, Sphere)
     - getRatio (доступен для всех типов фигур)
    
-  - propName=[double] (вместо propName должно быть подставлено одно из следующих свойств)
+  - propName=[float] (вместо propName должно быть подставлено одно из следующих свойств)
     - для Rectangle: width, length
     - для Cuboid: width, length, height
     - для Circle: radius
