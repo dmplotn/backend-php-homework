@@ -34,11 +34,12 @@ class FigureCalculator
     }
 
     /**
-     * @param string $operation
+     * @param string $operationName
+     * @param array $args
      *
      * @return float
      */
-    public function calculate(string $operationName): float
+    public function __call(string $operationName, array $args): float
     {
         $figure = $this->getFigure();
 

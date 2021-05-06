@@ -33,7 +33,7 @@ try {
 
     $calculator = new FigureCalculator($figure);
 
-    $result = $calculator->calculate($operationName);
+    $result = $calculator->$operationName();
 } catch (
     MissingRequestParamException |
     ClassExistenceException |
