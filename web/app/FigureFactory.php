@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace FigureCalculator;
 
-use FigureCalculator\Exceptions\{ClassExistenceException, PropertyExistenceException, MethodExistenceException};
+use FigureCalculator\Exceptions\{
+    ClassExistenceException,
+    PropertyExistenceException,
+    MethodExistenceException
+};
 use FigureCalculator\Figures\AbstractFigure;
 
 /**

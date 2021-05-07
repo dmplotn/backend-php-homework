@@ -6,9 +6,9 @@ use FigureCalculator\Figures\AbstractFigure;
 use FigureCalculator\Exceptions\MethodExistenceException;
 
 /**
- * FigureCalculator
+ * FigureWrapper
  */
-class FigureCalculator
+class FigureWrapper
 {
     use FigureLoggerTrait;
 

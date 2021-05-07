@@ -2,7 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/autoload/init.php';
 
-use FigureCalculator\{FigureFactory, FigureCalculator, RequestParamParser};
+use FigureCalculator\{FigureFactory, FigureWrapper, RequestParamParser};
 use FigureCalculator\Exceptions\{
     MissingRequestParamException,
     ClassExistenceException,
@@ -31,9 +31,9 @@ try {
 
     $figure = FigureFactory::create($figureName, $properties);
 
-    $calculator = new FigureCalculator($figure);
+    $wrapper = new FigureWrapper($figure);
 
-    $result = $calculator->$operationName();
+    $result = $wrapper->$operationName();
 } catch (
     MissingRequestParamException |
     ClassExistenceException |

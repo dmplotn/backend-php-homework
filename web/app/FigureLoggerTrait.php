@@ -38,6 +38,8 @@ trait FigureLoggerTrait
             true
         );
 
-        file_put_contents(Utils::LOG_PATH, "[{$operationStatus}][{$loggedAt}]\n{$info}\n\n", FILE_APPEND);
+        $logMessage = "[{$operationStatus}][{$loggedAt}]\n{$info}\n\n";
+
+        file_put_contents(Utils::LOG_PATH, $logMessage, FILE_APPEND);
     }
 }
