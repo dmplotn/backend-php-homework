@@ -30,6 +30,8 @@ class Cuboid extends AbstractFigure3D
     {
         FigurePropertyValidator::validateMultipleProperties($width, $length, $height);
 
+        $this->id = uniqid();
+
         $this->width = $width;
         $this->length = $length;
         $this->height = $height;

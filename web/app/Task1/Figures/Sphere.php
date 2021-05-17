@@ -18,6 +18,8 @@ class Sphere extends AbstractFigure3D
     {
         FigurePropertyValidator::validate($radius);
 
+        $this->id = uniqid();
+
         $this->radius = $radius;
     }
 

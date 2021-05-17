@@ -18,6 +18,8 @@ class Circle extends AbstractFigure2D
     {
         FigurePropertyValidator::validate($radius);
 
+        $this->id = uniqid();
+
         $this->radius = $radius;
     }
 

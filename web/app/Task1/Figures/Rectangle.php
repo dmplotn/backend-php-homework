@@ -24,6 +24,8 @@ class Rectangle extends AbstractFigure2D
     {
         FigurePropertyValidator::validateMultipleProperties($width, $length);
 
+        $this->id = uniqid();
+
         $this->width = $width;
         $this->length = $length;
     }
