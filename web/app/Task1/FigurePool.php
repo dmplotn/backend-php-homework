@@ -33,16 +33,15 @@ class FigurePool implements \Iterator
     /**
      * @return AbstractFigure
      */
-    public function get(): AbstractFigure
+    public function get(): ?AbstractFigure
     {
         if ($this->isAvailableItemsEmpty()) {
-            $figure = FigureGenerator::generate();
-            $this->addToUsedItems($figure);
-        } else {
-            $figure = $this->getFirstFromAvailableItems();
-            $this->removeFromAvailableItems($figure);
-            $this->addToUsedItems($figure);
+            return null;
         }
+
+        $figure = $this->getFirstFromAvailableItems();
+        $this->removeFromAvailableItems($figure);
+        $this->addToUsedItems($figure);
 
         $this->addKey($figure->getId());
 
