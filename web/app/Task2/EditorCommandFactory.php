@@ -14,7 +14,8 @@ class EditorCommandFactory
     public static function create(string $rawCommands): array
     {
         $commandStrings = explode("\n", $rawCommands);
-        $trimmedCommandStrings = array_map('trim', $commandStrings);
+        $filteredCommandStrings = array_filter($commandStrings, fn($commandString) => $commandString !== '');
+        $trimmedCommandStrings = array_map('trim', $filteredCommandStrings);
 
         return array_map(function ($commandString) {
             return self::getCommandByCommandString($commandString);
