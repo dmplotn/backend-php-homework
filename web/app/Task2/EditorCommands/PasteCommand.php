@@ -8,6 +8,16 @@ use Task2\EditorHistory;
 class PasteCommand implements EditorCommandInterface
 {
     /**
+     * @var \SplObserver|null
+     */
+    private ?\SplObserver $observer;
+
+    /**
+     * @var string
+     */
+    private string $errorMessage;
+
+    /**
      * @var int
      */
     private int $idx;
@@ -35,7 +45,8 @@ class PasteCommand implements EditorCommandInterface
         $buffer = $editor->getBuffer();
 
         if ($buffer === '') {
-            throw new \DomainException();
+            $this->errorMessage = 'Команда paste. Пустой буффер.';
+            $this->notify();
         }
 
         $content = $editor->getContent();
@@ -46,5 +57,41 @@ class PasteCommand implements EditorCommandInterface
         $editor->setBuffer('');
 
         $history->addState($editor->createState());
+    }
+
+    /**
+     * @param \SplObserver $observer
+     *
+     * @return void
+     */
+    public function attach(\SplObserver $observer): void
+    {
+        $this->observer = $observer;
+    }
+
+    /**
+     * @param \SplObserver $observer
+     *
+     * @return void
+     */
+    public function detach(\SplObserver $observer): void
+    {
+        $this->observer = null;
+    }
+
+    /**
+     * @return void
+     */
+    public function notify(): void
+    {
+        $this->observer->update($this);
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
     }
 }

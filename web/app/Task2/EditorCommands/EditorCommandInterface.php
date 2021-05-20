@@ -5,7 +5,7 @@ namespace Task2\EditorCommands;
 use Task2\Editor;
 use Task2\EditorHistory;
 
-interface EditorCommandInterface
+interface EditorCommandInterface extends \SplSubject
 {
     /**
      * @param Editor $editor

@@ -28,7 +28,7 @@ try {
 } catch (\Exception $e) {
     http_response_code(422);
     $response['status'] = 'error';
-    $response['message'] = 'Команды не выполнены. Одна или несколько команд являются невалидным.';
+    $response['message'] = "Команды не выполнены. Одна или несколько команд являются невалидным ({$e->getMessage()}).";
     echo json_encode($response);
     exit;
 }
