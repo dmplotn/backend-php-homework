@@ -12,7 +12,7 @@
 <body class="container mx-auto w-2/5">
     <h1 class="text-4xl font-bold mt-4 mb-8">Текстовый редактор</h1>
     <form onsubmit="processCommands(); return false">
-        <p class="my-4">Введите одну или несколько команды построчно:</p>
+        <p class="my-4">Введите одну или несколько команд построчно:</p>
         <p>
             <textarea class="border rounded-lg p-2" id="commands" cols="47" rows="10"></textarea>
         </p>
