@@ -2,7 +2,7 @@
 
 namespace Task2;
 
-use Task2\EditorCommands\EditorCommandInterface;
+use Task2\EditorCommands\AbstractEditorCommand;
 
 class EditorCommandFactory
 {
@@ -21,12 +21,13 @@ class EditorCommandFactory
         }, $trimmedCommandStrings);
     }
 
+
     /**
      * @param string $commandString
      *
-     * @return EditorCommandInterface
+     * @return AbstractEditorCommand
      */
-    private static function getCommandByCommandString(string $commandString): EditorCommandInterface
+    private static function getCommandByCommandString(string $commandString): AbstractEditorCommand
     {
         $commandsData = [
             [

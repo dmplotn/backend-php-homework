@@ -5,18 +5,8 @@ namespace Task2\EditorCommands;
 use Task2\Editor;
 use Task2\EditorHistory;
 
-class InsertCommand implements EditorCommandInterface
+class InsertCommand extends AbstractEditorCommand
 {
-    /**
-     * @var \SplObserver|null
-     */
-    private ?\SplObserver $observer;
-
-    /**
-     * @var string
-     */
-    private string $errorMessage;
-
     /**
      * @var string
      */
@@ -62,40 +52,5 @@ class InsertCommand implements EditorCommandInterface
         $editor->setContent($newContent);
 
         $history->addState($editor->createState());
-    }
-
-    /**
-     * @param \SplObserver $observer
-     *
-     * @return void
-     */
-    public function attach(\SplObserver $observer): void
-    {
-        $this->observer = $observer;
-    }
-
-    /**
-     * @param \SplObserver $observer
-     *
-     * @return void
-     */
-    public function detach(\SplObserver $observer): void
-    {
-    }
-
-    /**
-     * @return void
-     */
-    public function notify(): void
-    {
-        $this->observer->update($this);
-    }
-
-    /**
-     * @return string
-     */
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
     }
 }

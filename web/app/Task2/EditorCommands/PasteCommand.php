@@ -5,18 +5,8 @@ namespace Task2\EditorCommands;
 use Task2\Editor;
 use Task2\EditorHistory;
 
-class PasteCommand implements EditorCommandInterface
+class PasteCommand extends AbstractEditorCommand
 {
-    /**
-     * @var \SplObserver|null
-     */
-    private ?\SplObserver $observer;
-
-    /**
-     * @var string
-     */
-    private string $errorMessage;
-
     /**
      * @var int
      */
@@ -63,41 +53,5 @@ class PasteCommand implements EditorCommandInterface
         $editor->setBuffer('');
 
         $history->addState($editor->createState());
-    }
-
-    /**
-     * @param \SplObserver $observer
-     *
-     * @return void
-     */
-    public function attach(\SplObserver $observer): void
-    {
-        $this->observer = $observer;
-    }
-
-    /**
-     * @param \SplObserver $observer
-     *
-     * @return void
-     */
-    public function detach(\SplObserver $observer): void
-    {
-        $this->observer = null;
-    }
-
-    /**
-     * @return void
-     */
-    public function notify(): void
-    {
-        $this->observer->update($this);
-    }
-
-    /**
-     * @return string
-     */
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
     }
 }
