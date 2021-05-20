@@ -2,7 +2,6 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/autoload/init.php';
 
-use Task2\Editor;
 use Task2\EditorCommandFactory;
 use Task2\EditorController;
 
