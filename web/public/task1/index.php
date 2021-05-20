@@ -24,7 +24,7 @@ $pool->release(new Rectangle(10, 17));
 </head>
 <body class="container mx-auto w-2/5">
     <h1 class="text-4xl font-bold mt-4 mb-8">Пул объектов</h1>
-    <h2 class="text-2xl font-bold my-4">Содежимое пула объектов:</h2>
+    <h2 class="text-2xl font-bold my-4">Содержимое пула объектов:</h2>
     <?php foreach ($pool as $figure) : ?>
         <p class="mb-4">
             <pre><?php print_r($figure) ?></pre>
