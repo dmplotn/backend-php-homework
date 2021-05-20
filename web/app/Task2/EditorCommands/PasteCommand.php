@@ -28,7 +28,7 @@ class PasteCommand implements EditorCommandInterface
     public function __construct(int $idx)
     {
         if ($idx < 0) {
-            throw new \DomainException();
+            throw new \DomainException('Команда paste. Невалидный параметр.');
         }
 
         $this->idx = $idx;
@@ -50,6 +50,12 @@ class PasteCommand implements EditorCommandInterface
         }
 
         $content = $editor->getContent();
+
+        if ($this->idx > mb_strlen($content)) {
+            $this->errorMessage = 'Команда paste. Невалидный параметр.';
+            $this->notify();
+        }
+
         $substr1 = mb_substr($content, 0, $this->idx);
         $substr2 = mb_substr($content, $this->idx);
         $newContent = "{$substr1}{$buffer}{$substr2}";

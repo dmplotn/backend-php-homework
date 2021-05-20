@@ -51,6 +51,14 @@ class CopyCommand implements EditorCommandInterface
     public function execute(Editor $editor, EditorHistory $history): void
     {
         $content = $editor->getContent();
+
+        $contentLastIdx = mb_strlen($content) - 1;
+
+        if ($this->idx1 > $contentLastIdx || $this->idx2 > $contentLastIdx) {
+            $this->errorMessage = 'Команда copy. Невалидныe параметры.';
+            $this->notify();
+        }
+
         $substr = mb_substr($content, $this->idx1, $this->idx2 - $this->idx1 + 1);
         $editor->setBuffer($substr);
 

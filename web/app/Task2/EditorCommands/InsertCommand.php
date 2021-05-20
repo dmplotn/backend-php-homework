@@ -34,8 +34,7 @@ class InsertCommand implements EditorCommandInterface
     public function __construct(string $str, int $idx)
     {
         if ($idx < 0) {
-            $this->errorMessage = 'Команда insert. Невалидный параметр.';
-            $this->notify();
+            new \DomainException('Команда insert. Невалидный параметр.');
         }
 
         $this->str = $str;
@@ -51,6 +50,12 @@ class InsertCommand implements EditorCommandInterface
     public function execute(Editor $editor, EditorHistory $history): void
     {
         $content = $editor->getContent();
+
+        if ($this->idx > mb_strlen($content)) {
+            $this->errorMessage = 'Команда insert. Невалидный параметр.';
+            $this->notify();
+        }
+
         $substr1 = mb_substr($content, 0, $this->idx);
         $substr2 = mb_substr($content, $this->idx);
         $newContent = "{$substr1}{$this->str}{$substr2}";
@@ -66,7 +71,7 @@ class InsertCommand implements EditorCommandInterface
      */
     public function attach(\SplObserver $observer): void
     {
-        $this->observer = null;
+        $this->observer = $observer;
     }
 
     /**

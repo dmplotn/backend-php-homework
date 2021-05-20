@@ -2,10 +2,13 @@
 
 namespace Task2;
 
-use SplSubject;
-
-class EditorController implements \SplObserver
+class EditorController
 {
+    /**
+     * @var \SplObserver
+     */
+    private \SplObserver $observer;
+
     /**
      * @var Editor
      */
@@ -20,6 +23,8 @@ class EditorController implements \SplObserver
     {
         $history = new EditorHistory();
         $this->history = $history;
+
+        $this->observer = new ErrorObserver();
 
         $state = $this->history->getCurrentState();
         $content = $state->getContent();
@@ -53,22 +58,11 @@ class EditorController implements \SplObserver
     public function process(array $commands): void
     {
         foreach ($commands as $command) {
-            // $command->execute($this->editor, $this->history);
-            $command->attach($this);
+            $command->attach($this->observer);
         }
 
         foreach ($commands as $command) {
             $command->execute($this->editor, $this->history);
         }
-    }
-
-    /**
-     * @param \SplSubject $subject
-     *
-     * @return void
-     */
-    public function update(\SplSubject $subject): void
-    {
-        throw new \DomainException($subject->getErrorMessage());
     }
 }

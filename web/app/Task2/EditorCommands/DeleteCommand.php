@@ -35,8 +35,7 @@ class DeleteCommand implements EditorCommandInterface
     public function __construct(int $idx1, int $idx2)
     {
         if ($idx1 < 0 || $idx2 < 0 || $idx1 > $idx2) {
-            $this->errorMessage = 'Команда delete. Невалидные параметры.';
-            $this->notify();
+            throw new \DomainException("Команда delete. Невалидные параметры.");
         }
 
         $this->idx1 = $idx1;
@@ -52,6 +51,13 @@ class DeleteCommand implements EditorCommandInterface
     public function execute(Editor $editor, EditorHistory $history): void
     {
         $content = $editor->getContent();
+        $contentLastIdx = mb_strlen($content) - 1;
+
+        if ($this->idx1 > $contentLastIdx || $this->idx2 > $contentLastIdx) {
+            $this->errorMessage = 'Команда delete. Невалидныe параметры.';
+            $this->notify();
+        }
+
         $substr1 = mb_substr($content, 0, $this->idx1);
         $substr2 = mb_substr($content, $this->idx2 + 1);
         $newContent = "{$substr1}{$substr2}";
