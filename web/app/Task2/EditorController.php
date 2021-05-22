@@ -57,6 +57,10 @@ class EditorController
      */
     public function process(array $commands): void
     {
+        if ($commands === []) {
+            throw new \DomainException('Список команд пуст.');
+        }
+
         foreach ($commands as $command) {
             $command->attach($this->observer);
         }
