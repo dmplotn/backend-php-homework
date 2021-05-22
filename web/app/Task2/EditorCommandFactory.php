@@ -68,6 +68,6 @@ class EditorCommandFactory
             }
         }
 
-        throw new \Exception("Command '{$commandString}' is invalid command");
+        throw new \DomainException("Команда '{$commandString}' является невалидной.");
     }
 }
