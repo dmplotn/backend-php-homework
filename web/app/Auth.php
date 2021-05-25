@@ -8,17 +8,17 @@ use App\Exceptions\AuthException;
 class Auth
 {
     /**
-     * @param User $user
+     * @param int $id
      *
      * @return void
      */
-    public static function signIn(User $user): void
+    public static function signIn(int $id): void
     {
         if (self::isUserSignedIn()) {
             throw new AuthException("User is already signed in");
         }
 
-        $_SESSION['id'] = $user->getId();
+        $_SESSION['id'] = $id;
     }
 
     /**
