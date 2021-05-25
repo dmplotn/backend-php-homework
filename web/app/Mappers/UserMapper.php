@@ -26,9 +26,31 @@ class UserMapper
      */
     public function getUserById(int $id): ?User
     {
-        $sql = "SELECT * FROM users WHERE id = ?";
+        $sql = 'SELECT * FROM users WHERE id = ?';
+        return $this->getUser($id, $sql);
+    }
+
+    /**
+     * @param string $login
+     *
+     * @return User|null
+     */
+    public function getUserByLogin(string $login): ?User
+    {
+        $sql = 'SELECT * FROM users WHERE login = ?';
+        return $this->getUser($login, $sql);
+    }
+
+    /**
+     * @param mixed $attr
+     * @param string $sql
+     *
+     * @return User|null
+     */
+    private function getUser($attr, string $sql): ?User
+    {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$id]);
+        $stmt->execute([$attr]);
         $result = $stmt->fetch();
 
         if (!$result) {
@@ -49,7 +71,7 @@ class UserMapper
      *
      * @return void
      */
-    public function save(User $user): void
+    public function insert(User $user): void
     {
         $sql = "INSERT INTO users (login, password) VALUES (?, ?)";
         $stmt = $this->pdo->prepare($sql);
