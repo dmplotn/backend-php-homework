@@ -51,7 +51,7 @@ if ($errors !== []) {
     exit;
 }
 
-$user->setPassword($newPassword);
+$user->setPassword(password_hash($newPassword, PASSWORD_DEFAULT));
 $mapper->update($user);
 
 Auth::signOut();
