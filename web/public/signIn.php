@@ -27,7 +27,7 @@ if (Auth::isUserSignedIn()) {
     <script src="scripts/errors.js"></script>
 </head>
 <body>
-    <header class="mb-5">
+    <header id="displayErrorsTarget">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-xl">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@ if (Auth::isUserSignedIn()) {
             </div>
         </nav>
     </header>
-    <section>
+    <section class="mt-5">
         <div class="container-xl">
             <h1 class="mb-5">Авторизация пользователя</h1>
             <form onsubmit="signIn(); return false">
@@ -58,7 +58,7 @@ if (Auth::isUserSignedIn()) {
                     <label for="password" class="form-label">Пароль</label>
                     <input type="password" class="form-control" id="password">
                 </div>
-                <button id="displayErrorsTarget" type="submit" class="btn btn-primary">Войти</button>
+                <button type="submit" class="btn btn-primary">Войти</button>
             </form>
         </div>
     </section>
