@@ -26,7 +26,7 @@ if ($user->isGuest()) {
 </head>
 <body>
     <?php require "inc/header.php"?>
-    <section>
+    <section class="mt-5">
         <div class="container-xl">
             <h1 class="mb-5">Привет, <?= htmlspecialchars($user->getLogin()) ?>!</h1>
         </div>
