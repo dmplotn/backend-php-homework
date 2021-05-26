@@ -2,7 +2,7 @@
 
 namespace App\Mappers;
 
-use App\Models\User;
+use App\Models\Users\User;
 
 class UserMapper
 {
@@ -60,10 +60,11 @@ class UserMapper
         [
             'id' => $id,
             'login' => $login,
-            'password' => $password
+            'password' => $password,
+            'role_id' => $roleId
         ] = $result;
 
-        return new User($id, $login, $password);
+        return new User($id, $login, $password, $roleId);
     }
 
     /**
@@ -73,9 +74,13 @@ class UserMapper
      */
     public function insert(User $user): void
     {
-        $sql = 'INSERT INTO users (login, password) VALUES (?, ?)';
+        $sql = 'INSERT INTO users (login, password, role_id) VALUES (?, ?, ?)';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$user->getLogin(), $user->getPassword()]);
+        $stmt->execute([
+            $user->getLogin(),
+            $user->getPassword(),
+            $user->getRoleId()
+        ]);
     }
 
     /**
@@ -85,8 +90,13 @@ class UserMapper
      */
     public function update(User $user): void
     {
-        $sql = 'UPDATE users SET login = ?, password = ? WHERE id = ?';
+        $sql = 'UPDATE users SET login = ?, password = ?, role_id = ? WHERE id = ?';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$user->getLogin(), $user->getPassword(), $user->getId()]);
+        $stmt->execute([
+            $user->getLogin(),
+            $user->getPassword(),
+            $user->getRoleId(),
+            $user->getId()
+        ]);
     }
 }
