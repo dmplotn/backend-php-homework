@@ -3,7 +3,7 @@
 use App\Utils\Page;
 
 ?>
-<header class="mb-5">
+<header id="displayErrorsTarget">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-xl">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,11 +18,13 @@ use App\Utils\Page;
                     </li>
 
                     <?php if (!$user->isGuest()) : ?>
+                        <?php if ($user->isAdmin()) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin.php">Администратор</a>
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/userSettings.php?id=<?= $user->getId() ?>">Настройки пользователя</a>
-                        </li>
-                        <li class="nav-item">
-                            <form onsubmit="signOut(); return false"><button class="nav-link btn btn-link" type="submit">Выйти</button></form>
                         </li>
                     <?php elseif (Page::isSignIn()) : ?>
                         <li class="nav-item">
@@ -35,6 +37,10 @@ use App\Utils\Page;
                     <?php endif; ?>
                 
                 </ul>
+
+                <?php if (!$user->isGuest()) : ?>
+                    <form onsubmit="signOut(); return false"><button class="text-secondary nav-link btn btn-link" type="submit">Выйти</button></form>
+                <?php endif; ?>
             </div>
         
         </div>
