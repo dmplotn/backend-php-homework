@@ -42,6 +42,9 @@ $user = $mapper->getUserById($id);
                             <a class="nav-link" href="/index.php">Главная</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/userSettings.php?id=<?= $id ?>">Настройки пользователя</a>
+                        </li>
+                        <li class="nav-item">
                             <form onsubmit="signOut(); return false"><button class="nav-link btn btn-link" type="submit">Выйти</button></form>
                         </li>
                     </ul>
