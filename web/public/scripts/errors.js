@@ -1,3 +1,10 @@
+const removeErrorContainer = () => {
+  const container = document.getElementById('errorContainer');
+  if (container) {
+    container.remove();
+  }
+}
+
 const displayErrorContainer = (errors) => {
   const ul = document.createElement('ul');
   ul.className = 'list-group mb-5';
@@ -11,12 +18,5 @@ const displayErrorContainer = (errors) => {
   ul.append(...listItems);
 
   const target = document.getElementById('displayErrorsTarget');
-  target.before(ul);
+  target.after(ul);
 };
-
-const removeErrorContainer = () => {
-  const container = document.getElementById('errorContainer');
-  if (container) {
-    container.remove();
-  }
-}
