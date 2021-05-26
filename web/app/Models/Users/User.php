@@ -134,7 +134,7 @@ class User implements UserInterface
      */
     public function isAdmin(): bool
     {
-        return $this->role === self::ADMIN_ROLE;
+        return $this->roleId === self::ADMIN_ROLE;
     }
 
     public function isGuest(): bool
