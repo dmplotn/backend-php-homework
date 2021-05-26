@@ -73,8 +73,20 @@ class UserMapper
      */
     public function insert(User $user): void
     {
-        $sql = "INSERT INTO users (login, password) VALUES (?, ?)";
+        $sql = 'INSERT INTO users (login, password) VALUES (?, ?)';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$user->getLogin(), $user->getPassword()]);
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return void
+     */
+    public function update(User $user): void
+    {
+        $sql = 'UPDATE users SET login = ?, password = ? WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$user->getLogin(), $user->getPassword(), $user->getId()]);
     }
 }
