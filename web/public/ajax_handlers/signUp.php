@@ -5,9 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/db/init.php';
 
 use App\Validators\SignUpFormValidator;
 use App\Mappers\UserMapper;
-use App\Models\User;
+use App\Models\Users\User;
 use App\Auth;
-
 
 session_start();
 
@@ -43,7 +42,7 @@ if ($errors !== []) {
 }
 
 $mapper = new UserMapper($pdo);
-$user = new User(null, $login, password_hash($password, PASSWORD_DEFAULT));
+$user = new User(null, $login, password_hash($password, PASSWORD_DEFAULT), User::USER_ROLE);
 
 try {
     $mapper->insert($user);
