@@ -54,4 +54,24 @@ class User
     {
         return $this->password;
     }
+
+    /**
+     * @param string $login
+     *
+     * @return void
+     */
+    public function setLogin(string $login): void
+    {
+        $this->login = $login;
+    }
+
+    /**
+     * @param string $password
+     *
+     * @return void
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
 }
