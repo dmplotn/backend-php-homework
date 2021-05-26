@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\User;
+use App\Models\Users\User;
 use App\Exceptions\AuthException;
 
 class Auth
