@@ -5,4 +5,6 @@ $opt = [
     \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
 ];
 
-$pdo = new \PDO('mysql:host=172.20.0.3;port=3306;dbname=test;', 'root', 'root', $opt);
+$ipAddress = '172.25.0.2';
+
+$pdo = new \PDO("mysql:host={$ipAddress};port=3306;dbname=test;", 'root', 'root', $opt);
