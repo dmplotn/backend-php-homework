@@ -48,10 +48,14 @@ composer-up:
 
 docker-start: init
 	docker-compose up -d
+	make db-init
 
 docker-stop:
 	@docker-compose down -v
 	@make clean
+
+db-init:
+	@docker cp web/db/init.sql $(shell docker-compose ps -q mysqldb):/docker-entrypoint-initdb.d/init.sql
 
 gen-certs:
 	@docker run --rm -v $(shell pwd)/etc/ssl:/certificates -e "SERVER=$(NGINX_HOST)" jacoelho/generate-certificate
