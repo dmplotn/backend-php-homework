@@ -2,17 +2,10 @@
 
 namespace App\Models\Users;
 
+use App\Models\Role;
+
 class User implements UserInterface
 {
-    public const ADMIN_ROLE = 1;
-
-    public const USER_ROLE = 2;
-
-    private const AVAILABLE_ROLES = [
-        self::ADMIN_ROLE,
-        self::USER_ROLE
-    ];
-
     /**
      * @var int|null
      */
@@ -29,34 +22,20 @@ class User implements UserInterface
     private string $password;
 
     /**
-     * @var int
+     * @var Role
      */
-    private int $roleId;
+    private Role $role;
 
-    /**
-     * @param int|null $id
-     * @param string $login
-     * @param string $password
-     * @param int $roleId
-     */
-    public function __construct(?int $id, string $login, string $password, int $roleId)
-    {
-        if ($id !== null && $id <= 0) {
-            throw new \DomainException("Id is negative: {$id}");
-        }
-
-        if ($login === '') {
-            throw new \DomainException("Login is empty");
-        }
-
-        if (!in_array($roleId, self::AVAILABLE_ROLES)) {
-            throw new \DomainException("Unknown role: {$roleId}");
-        }
-
+    public function __construct(
+        ?int $id,
+        string $login,
+        string $password,
+        Role $role
+    ) {
         $this->id = $id;
         $this->login = $login;
         $this->password = $password;
-        $this->roleId = $roleId;
+        $this->role = $role;
     }
 
     /**
@@ -84,11 +63,11 @@ class User implements UserInterface
     }
 
     /**
-     * @return int
+     * @return Role
      */
-    public function getRoleId(): int
+    public function getRole(): Role
     {
-        return $this->roleId;
+        return $this->role;
     }
 
     /**
@@ -98,10 +77,6 @@ class User implements UserInterface
      */
     public function setLogin(string $login): void
     {
-        if ($login === '') {
-            throw new \DomainException("Login is empty");
-        }
-
         $this->login = $login;
     }
 
@@ -116,17 +91,13 @@ class User implements UserInterface
     }
 
     /**
-     * @param int $roleId
+     * @param Role $role
      *
      * @return void
      */
-    public function setRole(int $roleId): void
+    public function setRole(Role $role): void
     {
-        if (!in_array($roleId, self::AVAILABLE_ROLES)) {
-            throw new \DomainException("Unknown role: {$roleId}");
-        }
-
-        $this->roleId = $roleId;
+        $this->role = $role;
     }
 
     /**
@@ -134,9 +105,12 @@ class User implements UserInterface
      */
     public function isAdmin(): bool
     {
-        return $this->roleId === self::ADMIN_ROLE;
+        return $this->role->getName() === 'admin';
     }
 
+    /**
+     * @return bool
+     */
     public function isGuest(): bool
     {
         return false;

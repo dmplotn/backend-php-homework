@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/db/init.php';
 use App\Validators\SignUpFormValidator;
 use App\Mappers\UserMapper;
 use App\Models\Users\User;
+use App\Models\Role;
 use App\Auth;
 
 session_start();
@@ -42,13 +43,13 @@ if ($errors !== []) {
 }
 
 $mapper = new UserMapper($pdo);
-$user = new User(null, $login, password_hash($password, PASSWORD_DEFAULT), User::USER_ROLE);
+$user = new User(null, $login, password_hash($password, PASSWORD_DEFAULT), new Role('user'));
 
 try {
     $mapper->insert($user);
 } catch (PDOException $e) {
     $response['status'] = 'error';
-    $response['errors'][] = 'Пользователь с таким логином уже существует';
+    $response['errors'][] = 'Пользователь не может быть зарегистрирован';
     http_response_code(422);
     echo json_encode($response);
     exit;

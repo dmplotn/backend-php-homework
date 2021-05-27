@@ -3,6 +3,7 @@
 namespace App\Mappers;
 
 use App\Models\Users\User;
+use App\Models\Role;
 
 class UserMapper
 {
@@ -49,22 +50,24 @@ class UserMapper
      */
     private function getUser($attr, string $sql): ?User
     {
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$attr]);
-        $result = $stmt->fetch();
+        $userStmt = $this->pdo->prepare($sql);
+        $userStmt->execute([$attr]);
+        $data = $userStmt->fetch();
 
-        if (!$result) {
+        if (!$data) {
             return null;
         }
 
-        [
-            'id' => $id,
-            'login' => $login,
-            'password' => $password,
-            'role_id' => $roleId
-        ] = $result;
+        $id = (int) $data['id'];
+        $login = $data['login'];
+        $password = $data['password'];
+        $roleId = (int) $data['role_id'];
 
-        return new User($id, $login, $password, $roleId);
+        $roleStmt = $this->pdo->prepare('SELECT name FROM roles WHERE id = ?');
+        $roleStmt->execute([$roleId]);
+        $roleName = $roleStmt->fetchColumn();
+
+        return new User($id, $login, $password, new Role($roleName));
     }
 
     /**
@@ -74,12 +77,17 @@ class UserMapper
      */
     public function insert(User $user): void
     {
+        $roleName = $user->getRole()->getName();
+        $stmt = $this->pdo->prepare('SELECT id FROM roles WHERE name = ?');
+        $stmt->execute([$roleName]);
+        $roleId = (int) $stmt->fetchColumn();
+
         $sql = 'INSERT INTO users (login, password, role_id) VALUES (?, ?, ?)';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             $user->getLogin(),
             $user->getPassword(),
-            $user->getRoleId()
+            $roleId
         ]);
     }
 
@@ -90,27 +98,36 @@ class UserMapper
      */
     public function update(User $user): void
     {
-        $sql = 'UPDATE users SET login = ?, password = ?, role_id = ? WHERE id = ?';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
+        $roleName = $user->getRole()->getName();
+        $roleStmt = $this->pdo->prepare('SELECT id FROM roles WHERE name = ?');
+        $roleStmt->execute([$roleName]);
+        $roleId = (int) $roleStmt->fetchColumn();
+
+        $userStmt = $this->pdo->prepare('UPDATE users SET login = ?, password = ?, role_id = ? WHERE id = ?');
+        $userStmt->execute([
             $user->getLogin(),
             $user->getPassword(),
-            $user->getRoleId(),
+            $roleId,
             $user->getId()
         ]);
     }
 
-    public function findUsersByRole(string $role): array
+    /**
+     * @param string $roleName
+     *
+     * @return array
+     */
+    public function findUsersByRoleName(string $roleName): array
     {
         $sql = '
             SELECT users.id, users.login, users.password, users.role_id
-            FROM users INNER JOIN roles ON users.role_id = roles.id
+            FROM users JOIN roles ON users.role_id = roles.id
             WHERE roles.name = ?
         ';
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$role]);
-        $data =  $stmt->fetchAll();
+        $userStmt = $this->pdo->prepare($sql);
+        $userStmt->execute([$roleName]);
+        $data = $userStmt->fetchAll();
 
         $result = [];
 
@@ -119,17 +136,21 @@ class UserMapper
                 'id' => $id,
                 'login' => $login,
                 'password' => $password,
-                'role_id' => $roleId
             ]
         ) {
-            $user = new User($id, $login, $password, $roleId);
+            $user = new User((int) $id, $login, $password, new Role($roleName));
             $result[] = $user;
         }
 
         return $result;
     }
 
-    public function delete($id)
+    /**
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete(int $id): void
     {
         $sql = 'DELETE FROM users WHERE id = ?';
         $stmt = $this->pdo->prepare($sql);

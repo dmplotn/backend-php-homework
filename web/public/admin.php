@@ -18,7 +18,7 @@ if (!$user->isAdmin()) {
 
 $mapper = new UserMapper($pdo);
 
-$users = $mapper->findUsersByRole('user');
+$users = $mapper->findUsersByRoleName('user');
 
 ?>
 <!DOCTYPE html>
@@ -83,9 +83,6 @@ $users = $mapper->findUsersByRole('user');
     const buttons = Array.from(document.querySelectorAll('[data-bs-toggle=modal]'));
     buttons.forEach((button) => button.addEventListener('click', () => {
         const id = button.getAttribute('data-user-id');
-
-        // const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-
         const deleteConfirmationButton = document.getElementById('delete-confirmation-button');
         const handler = () => {
             deleteUser(id);
