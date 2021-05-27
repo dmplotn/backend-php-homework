@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/db/init.php';
 use App\Validators\ChangeLoginFormValidator;
 use App\Mappers\UserMapper;
 use App\Auth;
+use App\UserFactory;
 
 session_start();
 
@@ -18,7 +19,8 @@ if (!isset($_POST['newLogin']) || !isset($_POST['id'])) {
     exit;
 }
 
-['newLogin' => $newLogin, 'id' => $id] = $_POST;
+$newLogin = $_POST['newLogin'];
+$id = (int) $_POST['id'];
 
 $mapper = new UserMapper($pdo);
 
@@ -55,7 +57,12 @@ try {
     exit;
 }
 
-Auth::signOut();
+$factory = new UserFactory($pdo);
+$currentUser = $factory->getCurrentUser();
+
+if ($currentUser->getId() === $id) {
+    Auth::signOut();
+}
 
 $response['status'] = 'success';
 echo json_encode($response);

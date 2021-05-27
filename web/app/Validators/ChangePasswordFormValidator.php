@@ -24,7 +24,7 @@ class ChangePasswordFormValidator
             $errors[] = "Поле 'подтвержение пароля' не должно быть пустым";
         }
 
-        if ($newPassword === $currentPassword) {
+        if (password_verify($newPassword, $currentPassword)) {
             $errors[] = "Новый пароль не должен совпадать с текущим паролем";
         }
 

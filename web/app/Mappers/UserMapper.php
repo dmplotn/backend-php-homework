@@ -99,4 +99,33 @@ class UserMapper
             $user->getId()
         ]);
     }
+
+    public function findUsersByRole(string $role): array
+    {
+        $sql = '
+            SELECT users.id, users.login, users.password, users.role_id
+            FROM users INNER JOIN roles ON users.role_id = roles.id
+            WHERE roles.name = ?
+        ';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$role]);
+        $data =  $stmt->fetchAll();
+
+        $result = [];
+
+        foreach (
+            $data as [
+                'id' => $id,
+                'login' => $login,
+                'password' => $password,
+                'role_id' => $roleId
+            ]
+        ) {
+            $user = new User($id, $login, $password, $roleId);
+            $result[] = $user;
+        }
+
+        return $result;
+    }
 }

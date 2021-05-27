@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/db/init.php';
 use App\Validators\ChangePasswordFormValidator;
 use App\Mappers\UserMapper;
 use App\Auth;
+use App\UserFactory;
 
 session_start();
 
@@ -22,11 +23,9 @@ if (
     exit;
 }
 
-[
-    'newPassword' => $newPassword,
-    'passwordConfirmation' => $passwordConfirmation,
-    'id' => $id
-] = $_POST;
+$newPassword = $_POST['newPassword'];
+$passwordConfirmation = $_POST['passwordConfirmation'];
+$id = (int) $_POST['id'];
 
 $mapper = new UserMapper($pdo);
 
@@ -54,7 +53,12 @@ if ($errors !== []) {
 $user->setPassword(password_hash($newPassword, PASSWORD_DEFAULT));
 $mapper->update($user);
 
-Auth::signOut();
+$factory = new UserFactory($pdo);
+$currentUser = $factory->getCurrentUser();
+
+if ($currentUser->getId() === $id) {
+    Auth::signOut();
+}
 
 $response['status'] = 'success';
 echo json_encode($response);

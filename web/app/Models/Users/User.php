@@ -126,7 +126,7 @@ class User implements UserInterface
             throw new \DomainException("Unknown role: {$roleId}");
         }
 
-        $this->role = $roleId;
+        $this->roleId = $roleId;
     }
 
     /**

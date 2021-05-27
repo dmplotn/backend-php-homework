@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/autoload/init.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/db/init.php';
 
 use App\UserFactory;
+use App\Mappers\UserMapper;
 
 session_start();
 
@@ -17,7 +18,15 @@ if (!isset($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
-if ($user->isGuest() || $user->getId() !== $id) {
+$mapper = new UserMapper($pdo);
+$userForChange = $mapper->getUserById($id);
+
+if (!$userForChange) {
+    http_response_code(404);
+    exit;
+}
+
+if ($user->isGuest() || (!$user->isAdmin() && $user->getId() !== $id)) {
     header('Location: /index.php');
     exit;
 }
@@ -38,7 +47,7 @@ if ($user->isGuest() || $user->getId() !== $id) {
     <?php require "inc/header.php"?>
     <section class="mt-5">
         <div class="container-xl">
-            <h1 class="mb-5">Настройки пользователя</h1>
+            <h1 class="mb-5">Настройки пользователя - <?= $userForChange->getLogin() ?></h1>
             <form class="mb-5" onsubmit="changeUserLogin(); return false">
                 <h2 class="mb-4">Изменить логин</h2>
                 <div class="mb-5">
