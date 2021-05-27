@@ -128,4 +128,11 @@ class UserMapper
 
         return $result;
     }
+
+    public function delete($id)
+    {
+        $sql = 'DELETE FROM users WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+    }
 }
