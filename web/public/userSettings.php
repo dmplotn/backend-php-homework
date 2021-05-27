@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/db/init.php';
 use App\UserFactory;
 use App\Mappers\UserMapper;
 use App\Mappers\PositionMapper;
+use App\Mappers\DepartmentMapper;
 
 session_start();
 
@@ -35,6 +36,9 @@ if ($user->isGuest() || (!$user->isAdmin() && $user->getId() !== $id)) {
 $positionMapper = new PositionMapper($pdo);
 $positions = $positionMapper->getAllPositions();
 
+$departmentMapper = new DepartmentMapper($pdo);
+$departments = $departmentMapper->getAllDepartments();
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -46,6 +50,7 @@ $positions = $positionMapper->getAllPositions();
     <script src="scripts/changeUserLogin.js"></script>
     <script src="scripts/changeUserPassword.js"></script>
     <script src="scripts/changeUserPosition.js"></script>
+    <script src="scripts/changeUserDepartment.js"></script>
     <script src="scripts/errors.js"></script>
 </head>
 <body>
@@ -76,11 +81,22 @@ $positions = $positionMapper->getAllPositions();
             <form class="mb-5" onsubmit="changeUserPosition(); return false">
                 <h2 class="mb-4">Изменить должность</h2>
                 <div class="mb-5">
-                <select class="form-select" id="position">
-                    <?php foreach ($positions as $position) : ?>
-                        <option value="<?= $position->getId() ?>"><?= $position->getName() ?></option>
-                    <?php endforeach; ?>
-                </select>
+                    <select class="form-select" id="position">
+                        <?php foreach ($positions as $position) : ?>
+                            <option value="<?= $position->getId() ?>"><?= $position->getName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Изменить</button>
+            </form>
+            <form class="mb-5" onsubmit="changeUserDepartment(); return false">
+                <h2 class="mb-4">Изменить отдел</h2>
+                <div class="mb-5">
+                    <select class="form-select" id="department">
+                        <?php foreach ($departments as $department) : ?>
+                            <option value="<?= $department->getId() ?>"><?= $department->getName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Изменить</button>
             </form>

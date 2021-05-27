@@ -2,6 +2,7 @@
 
 namespace App\Models\Users;
 
+use App\Models\Department;
 use App\Models\Position;
 use App\Models\Role;
 
@@ -27,20 +28,30 @@ class User implements UserInterface
      */
     private Role $role;
 
+    /**
+     * @var Position|null
+     */
     private ?Position $position;
+
+    /**
+     * @var Department|null
+     */
+    private ?Department $department;
 
     public function __construct(
         ?int $id,
         string $login,
         string $password,
         Role $role,
-        ?Position $position = null
+        ?Position $position = null,
+        ?Department $department = null
     ) {
         $this->id = $id;
         $this->login = $login;
         $this->password = $password;
         $this->role = $role;
         $this->position = $position;
+        $this->department = $department;
     }
 
     /**
@@ -84,6 +95,14 @@ class User implements UserInterface
     }
 
     /**
+     * @return Department|null
+     */
+    public function getDepartment(): ?Department
+    {
+        return $this->department;
+    }
+
+    /**
      * @param string $login
      *
      * @return void
@@ -121,6 +140,16 @@ class User implements UserInterface
     public function setPosition(Position $position): void
     {
         $this->position = $position;
+    }
+
+    /**
+     * @param Department $department
+     *
+     * @return void
+     */
+    public function setDepartment(Department $department): void
+    {
+        $this->department = $department;
     }
 
     /**
