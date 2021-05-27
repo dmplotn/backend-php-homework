@@ -76,13 +76,13 @@ $users = $mapper->findUsersByRoleName('user', $filterData, $page, $sort);
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Отфильтровать</button>
+                <button type="submit" class="btn btn-primary">Фильтровать</button>
             </form>
             <div class="mb-5">
                 <h2 class="mb-3">Сортировка таблицы</h2>
                 <form class="mb-2" action="/admin.php">
                     <input class="form-control" id="sort" name="sort" value="desc" type="hidden">
-                    <button type="submit" class="btn btn-primary">Сортировать по убывания</button>
+                    <button type="submit" class="btn btn-primary">Сортировать по убыванию</button>
                 </form>
                 <form class="mb-2" action="/admin.php">
                     <input class="form-control" id="sort" name="sort" value="asc" type="hidden">
