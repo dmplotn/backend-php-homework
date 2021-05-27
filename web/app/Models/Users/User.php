@@ -2,6 +2,7 @@
 
 namespace App\Models\Users;
 
+use App\Models\Position;
 use App\Models\Role;
 
 class User implements UserInterface
@@ -26,16 +27,20 @@ class User implements UserInterface
      */
     private Role $role;
 
+    private ?Position $position;
+
     public function __construct(
         ?int $id,
         string $login,
         string $password,
-        Role $role
+        Role $role,
+        ?Position $position = null
     ) {
         $this->id = $id;
         $this->login = $login;
         $this->password = $password;
         $this->role = $role;
+        $this->position = $position;
     }
 
     /**
@@ -71,6 +76,14 @@ class User implements UserInterface
     }
 
     /**
+     * @return Position|null
+     */
+    public function getPosition(): ?Position
+    {
+        return $this->position;
+    }
+
+    /**
      * @param string $login
      *
      * @return void
@@ -98,6 +111,16 @@ class User implements UserInterface
     public function setRole(Role $role): void
     {
         $this->role = $role;
+    }
+
+    /**
+     * @param Position $position
+     *
+     * @return void
+     */
+    public function setPosition(Position $position): void
+    {
+        $this->position = $position;
     }
 
     /**

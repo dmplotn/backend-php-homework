@@ -8,15 +8,6 @@ use App\UserFactory;
 
 session_start();
 
-if (!isset($_POST['id'])) {
-    $response['status'] = 'error';
-    http_response_code(422);
-    echo json_encode($response);
-    exit;
-}
-
-$id = (int) $_POST['id'];
-
 $factory = new UserFactory($pdo);
 $currenUser = $factory->getCurrentUser();
 
@@ -26,6 +17,15 @@ if (!$currenUser->isAdmin()) {
     echo json_encode($response);
     exit;
 }
+
+if (!isset($_POST['id'])) {
+    $response['status'] = 'error';
+    http_response_code(422);
+    echo json_encode($response);
+    exit;
+}
+
+$id = (int) $_POST['id'];
 
 $mapper = new UserMapper($pdo);
 $mapper->delete($id);

@@ -2,6 +2,7 @@
 
 namespace App\Mappers;
 
+use App\Models\Position;
 use App\Models\Users\User;
 use App\Models\Role;
 
@@ -61,13 +62,24 @@ class UserMapper
         $id = (int) $data['id'];
         $login = $data['login'];
         $password = $data['password'];
-        $roleId = (int) $data['role_id'];
+        $roleId = $data['role_id'];
+        $positionId = $data['position_id'];
 
         $roleStmt = $this->pdo->prepare('SELECT name FROM roles WHERE id = ?');
-        $roleStmt->execute([$roleId]);
+        $roleStmt->execute([(int) $roleId]);
         $roleName = $roleStmt->fetchColumn();
+        $role = new Role($roleName);
 
-        return new User($id, $login, $password, new Role($roleName));
+        if (!$positionId) {
+            $position = null;
+        } else {
+            $positionStmt = $this->pdo->prepare('SELECT name FROM positions WHERE id = ?');
+            $positionStmt->execute([(int) $positionId]);
+            $positionName = $positionStmt->fetchColumn();
+            $position = new Position($positionId, $positionName);
+        }
+
+        return new User($id, $login, $password, $role, $position);
     }
 
     /**
@@ -82,12 +94,14 @@ class UserMapper
         $stmt->execute([$roleName]);
         $roleId = (int) $stmt->fetchColumn();
 
-        $sql = 'INSERT INTO users (login, password, role_id) VALUES (?, ?, ?)';
-        $stmt = $this->pdo->prepare($sql);
+        $positionId = $user->getPosition() ? $user->getPosition()->getId() : null;
+
+        $stmt = $this->pdo->prepare('INSERT INTO users (login, password, role_id, position_id) VALUES (?, ?, ?, ?)');
         $stmt->execute([
             $user->getLogin(),
             $user->getPassword(),
-            $roleId
+            $roleId,
+            $positionId
         ]);
     }
 
@@ -103,11 +117,14 @@ class UserMapper
         $roleStmt->execute([$roleName]);
         $roleId = (int) $roleStmt->fetchColumn();
 
-        $userStmt = $this->pdo->prepare('UPDATE users SET login = ?, password = ?, role_id = ? WHERE id = ?');
+        $positionId = $user->getPosition() ? $user->getPosition()->getId() : null;
+
+        $userStmt = $this->pdo->prepare('UPDATE users SET login = ?, password = ?, role_id = ?, position_id = ? WHERE id = ?');
         $userStmt->execute([
             $user->getLogin(),
             $user->getPassword(),
             $roleId,
+            $positionId,
             $user->getId()
         ]);
     }
@@ -120,8 +137,9 @@ class UserMapper
     public function findUsersByRoleName(string $roleName): array
     {
         $sql = '
-            SELECT users.id, users.login, users.password, users.role_id
-            FROM users JOIN roles ON users.role_id = roles.id
+            SELECT users.id, users.login, users.password, users.role_id, users.position_id
+            FROM users
+            JOIN roles ON users.role_id = roles.id
             WHERE roles.name = ?
         ';
 
@@ -136,9 +154,19 @@ class UserMapper
                 'id' => $id,
                 'login' => $login,
                 'password' => $password,
+                'position_id' => $positionId
             ]
         ) {
-            $user = new User((int) $id, $login, $password, new Role($roleName));
+            if (!$positionId) {
+                $position = null;
+            } else {
+                $positionStmt = $this->pdo->prepare('SELECT name FROM positions WHERE id = ?');
+                $positionStmt->execute([(int) $positionId]);
+                $positionName = $positionStmt->fetchColumn();
+                $position = new Position((int) $positionId, $positionName);
+            }
+
+            $user = new User((int) $id, $login, $password, new Role($roleName), $position);
             $result[] = $user;
         }
 

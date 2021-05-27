@@ -5,6 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap/db/init.php';
 
 use App\UserFactory;
 use App\Mappers\UserMapper;
+use App\Mappers\PositionMapper;
 
 session_start();
 
@@ -18,8 +19,8 @@ if (!isset($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
-$mapper = new UserMapper($pdo);
-$userForChange = $mapper->getUserById($id);
+$userMapper = new UserMapper($pdo);
+$userForChange = $userMapper->getUserById($id);
 
 if (!$userForChange) {
     http_response_code(404);
@@ -31,6 +32,9 @@ if ($user->isGuest() || (!$user->isAdmin() && $user->getId() !== $id)) {
     exit;
 }
 
+$positionMapper = new PositionMapper($pdo);
+$positions = $positionMapper->getAllPositions();
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -41,6 +45,7 @@ if ($user->isGuest() || (!$user->isAdmin() && $user->getId() !== $id)) {
     <script src="scripts/signOut.js"></script>
     <script src="scripts/changeUserLogin.js"></script>
     <script src="scripts/changeUserPassword.js"></script>
+    <script src="scripts/changeUserPosition.js"></script>
     <script src="scripts/errors.js"></script>
 </head>
 <body>
@@ -56,7 +61,7 @@ if ($user->isGuest() || (!$user->isAdmin() && $user->getId() !== $id)) {
                 </div>
                 <button type="submit" class="btn btn-primary">Изменить</button>
             </form>
-            <form onsubmit="changeUserPassword(); return false">
+            <form class="mb-5" onsubmit="changeUserPassword(); return false">
                 <h2 class="mb-4">Изменить пароль</h2>
                 <div class="mb-3">
                     <label for="password" class="form-label">Новый пароль</label>
@@ -65,6 +70,17 @@ if ($user->isGuest() || (!$user->isAdmin() && $user->getId() !== $id)) {
                 <div class="mb-5">
                     <label for="passwordConfirmation" class="form-label">Подтверждение пароля</label>
                     <input type="password" class="form-control" id="passwordConfirmation">
+                </div>
+                <button type="submit" class="btn btn-primary">Изменить</button>
+            </form>
+            <form class="mb-5" onsubmit="changeUserPosition(); return false">
+                <h2 class="mb-4">Изменить должность</h2>
+                <div class="mb-5">
+                <select class="form-select" id="position">
+                    <?php foreach ($positions as $position) : ?>
+                        <option value="<?= $position->getId() ?>"><?= $position->getName() ?></option>
+                    <?php endforeach; ?>
+                </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Изменить</button>
             </form>

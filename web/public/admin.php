@@ -40,6 +40,7 @@ $users = $mapper->findUsersByRoleName('user');
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Логин</th>
+                    <th scope="col">Должность</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     </tr>
@@ -49,6 +50,7 @@ $users = $mapper->findUsersByRoleName('user');
                     <tr>
                         <th scope="row"><?= $user->getId() ?></th>
                         <td><?= $user->getLogin() ?></td>
+                        <td><?= $user->getPosition() ? $user->getPosition()->getName() : 'Отсутствует' ?></td>
                         <td><a href="/userSettings.php?id=<?= $user->getId() ?>">Редактировать</a></td>
                         <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-user-id="<?= $user->getId() ?>">
