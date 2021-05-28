@@ -145,11 +145,13 @@ class UserMapper
     }
 
     /**
-     * @param string $roleName
+     * @param array $filterData
+     * @param null $sort
+     * @param int $page
      *
      * @return array
      */
-    public function findUsersByRoleName(string $roleName, array $filterData = [], $page = 1, $sort = null): array
+    public function getUsers(array $filterData = [], $sort = null, $page = 1): array
     {
         $loginFilter = $filterData['login'] ?? null;
         $positionFilter = (int) $filterData['position'] ?? null;
@@ -165,7 +167,7 @@ class UserMapper
         $sqlParts[] = $select;
 
         $whereParts = [];
-        $whereParts[] = 'roles.name = ?';
+        $whereParts[] = "roles.name = 'user'";
 
         if ($loginFilter !== '') {
             $whereParts[] = "users.login LIKE '%{$loginFilter}%'";
@@ -192,8 +194,7 @@ class UserMapper
 
         $sql = implode('', $sqlParts);
 
-        $userStmt = $this->pdo->prepare($sql);
-        $userStmt->execute([$roleName]);
+        $userStmt = $this->pdo->query($sql);
         $data = $userStmt->fetchAll();
 
         $result = [];
@@ -225,7 +226,7 @@ class UserMapper
                 $department = new Department($departmentId, $departmentName);
             }
 
-            $user = new User((int) $id, $login, $password, new Role($roleName), $position, $department);
+            $user = new User((int) $id, $login, $password, new Role('user'), $position, $department);
             $result[] = $user;
         }
 
@@ -244,15 +245,42 @@ class UserMapper
         $stmt->execute([$id]);
     }
 
-    public function countUsers(): int
+    public function countUsers(array $filterData = []): int
     {
-        $stmt = $this->pdo->query("
+        $loginFilter = $filterData['login'] ?? null;
+        $positionFilter = (int) $filterData['position'] ?? null;
+        $departmentFilter = (int) $filterData['department'] ?? null;
+
+        $select = '
             SELECT COUNT(*)
             FROM users
             JOIN roles ON users.role_id = roles.id
-            WHERE roles.name = 'user'
-        ");
-        $stmt->execute();
-        return (int) $stmt->fetchColumn();
+        ';
+
+        $sqlParts = [];
+        $sqlParts[] = $select;
+
+        $whereParts = [];
+        $whereParts[] = "roles.name = 'user'";
+
+        if ($loginFilter !== '') {
+            $whereParts[] = "users.login LIKE '%{$loginFilter}%'";
+        }
+
+        if ($positionFilter !== 0) {
+            $whereParts[] = "users.position_id = {$positionFilter}";
+        }
+
+        if ($departmentFilter !== 0) {
+            $whereParts[] = "users.department_id = {$departmentFilter}";
+        }
+
+        $where = ' WHERE ' . implode(' AND ', $whereParts);
+        $sqlParts[] = $where;
+
+        $sql = implode('', $sqlParts);
+
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchColumn();
     }
 }
