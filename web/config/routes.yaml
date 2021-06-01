@@ -1,0 +1,3 @@
+index:
+   path: /year/{year}
+   controller: App\Controllers\YearController::index
