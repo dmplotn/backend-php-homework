@@ -24,3 +24,9 @@ nbproject/
 
 # SSL Certs
 etc/ssl/
+
+# Composer
+web/vendor/
+
+# Symfony artefacts
+web/var/
