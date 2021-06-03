@@ -5,3 +5,4 @@ wouterj_eloquent:
     username: root
     password: root
     prefix:   ~
+    eloquent: true
