@@ -1,0 +1,416 @@
+-
+    name: Австралия
+    country_iso: AU
+    currency_iso: AUD
+-
+    name: 'Кокосовые острова'
+    country_iso: CC
+    currency_iso: AUD
+-
+    name: 'Остров Рождества'
+    country_iso: CX
+    currency_iso: AUD
+-
+    name: 'Остров Херд и острова МакДональд'
+    country_iso: HM
+    currency_iso: AUD
+-
+    name: Кирибати
+    country_iso: KI
+    currency_iso: AUD
+-
+    name: 'Остров Норфолк'
+    country_iso: NF
+    currency_iso: AUD
+-
+    name: Науру
+    country_iso: NR
+    currency_iso: AUD
+-
+    name: Тувалу
+    country_iso: TV
+    currency_iso: AUD
+-
+    name: Азербайджан
+    country_iso: AZ
+    currency_iso: AZN
+-
+    name: 'Соединённое Королевство'
+    country_iso: GB
+    currency_iso: GBP
+-
+    name: Гернси
+    country_iso: GG
+    currency_iso: GBP
+-
+    name: 'Южная Джорджия и Южные Сандвичевы острова'
+    country_iso: GS
+    currency_iso: GBP
+-
+    name: 'Остров Мэн'
+    country_iso: IM
+    currency_iso: GBP
+-
+    name: 'Британская территория Индийского океана'
+    country_iso: IO
+    currency_iso: GBP
+-
+    name: Джерси
+    country_iso: JE
+    currency_iso: GBP
+-
+    name: Армения
+    country_iso: AM
+    currency_iso: AMD
+-
+    name: Беларусь
+    country_iso: BY
+    currency_iso: BYN
+-
+    name: Болгария
+    country_iso: BG
+    currency_iso: BGN
+-
+    name: Бразилия
+    country_iso: BR
+    currency_iso: BRL
+-
+    name: Венгрия
+    country_iso: HU
+    currency_iso: HUF
+-
+    name: Гонконг
+    country_iso: HK
+    currency_iso: HKD
+-
+    name: Дания
+    country_iso: DK
+    currency_iso: DKK
+-
+    name: 'Фарерские острова'
+    country_iso: FO
+    currency_iso: DKK
+-
+    name: Гренландия
+    country_iso: GL
+    currency_iso: DKK
+-
+    name: 'Американские Самоа'
+    country_iso: AS
+    currency_iso: USD
+-
+    name: 'Бонайре, Синт-Эстатиус и Саба'
+    country_iso: BQ
+    currency_iso: USD
+-
+    name: Эквадор
+    country_iso: EC
+    currency_iso: USD
+-
+    name: 'Федеративные Штаты Микронезии'
+    country_iso: FM
+    currency_iso: USD
+-
+    name: Гуам
+    country_iso: GU
+    currency_iso: USD
+-
+    name: 'Маршалловы острова'
+    country_iso: MH
+    currency_iso: USD
+-
+    name: 'Острова северной Марианы'
+    country_iso: MP
+    currency_iso: USD
+-
+    name: Пуэрто-Рико
+    country_iso: PR
+    currency_iso: USD
+-
+    name: Палау
+    country_iso: PW
+    currency_iso: USD
+-
+    name: Сальвадор
+    country_iso: SV
+    currency_iso: USD
+-
+    name: 'Острова Туркс и Каикос'
+    country_iso: TC
+    currency_iso: USD
+-
+    name: 'Восточный Тимор'
+    country_iso: TL
+    currency_iso: USD
+-
+    name: 'Соединенные штаты Малых  Удаленных островов'
+    country_iso: UM
+    currency_iso: USD
+-
+    name: 'Соединённые штаты'
+    country_iso: US
+    currency_iso: USD
+-
+    name: 'Виргинские острова (Британия)'
+    country_iso: VG
+    currency_iso: USD
+-
+    name: 'Виргинские острова (США)'
+    country_iso: VI
+    currency_iso: USD
+-
+    name: Зимбабве
+    country_iso: ZW
+    currency_iso: USD
+-
+    name: Андорра
+    country_iso: AD
+    currency_iso: EUR
+-
+    name: Австрия
+    country_iso: AT
+    currency_iso: EUR
+-
+    name: 'Аландские острова'
+    country_iso: AX
+    currency_iso: EUR
+-
+    name: Бельгия
+    country_iso: BE
+    currency_iso: EUR
+-
+    name: Сен-Бартельми
+    country_iso: BL
+    currency_iso: EUR
+-
+    name: Кипр
+    country_iso: CY
+    currency_iso: EUR
+-
+    name: Германия
+    country_iso: DE
+    currency_iso: EUR
+-
+    name: Эстония
+    country_iso: EE
+    currency_iso: EUR
+-
+    name: Испания
+    country_iso: ES
+    currency_iso: EUR
+-
+    name: Финляндия
+    country_iso: FI
+    currency_iso: EUR
+-
+    name: Франция
+    country_iso: FR
+    currency_iso: EUR
+-
+    name: 'Французская Гвиана'
+    country_iso: GF
+    currency_iso: EUR
+-
+    name: Гваделупа
+    country_iso: GP
+    currency_iso: EUR
+-
+    name: Греция
+    country_iso: GR
+    currency_iso: EUR
+-
+    name: Ирландия
+    country_iso: IE
+    currency_iso: EUR
+-
+    name: Италия
+    country_iso: IT
+    currency_iso: EUR
+-
+    name: Литва
+    country_iso: LT
+    currency_iso: EUR
+-
+    name: Люксембург
+    country_iso: LU
+    currency_iso: EUR
+-
+    name: Латвия
+    country_iso: LV
+    currency_iso: EUR
+-
+    name: Монако
+    country_iso: MC
+    currency_iso: EUR
+-
+    name: Черногория
+    country_iso: ME
+    currency_iso: EUR
+-
+    name: 'Сен-Мартен (Франция)'
+    country_iso: MF
+    currency_iso: EUR
+-
+    name: Мартиника
+    country_iso: MQ
+    currency_iso: EUR
+-
+    name: Мальта
+    country_iso: MT
+    currency_iso: EUR
+-
+    name: Нидерланды
+    country_iso: NL
+    currency_iso: EUR
+-
+    name: 'Сен-Пьер и Микелон'
+    country_iso: PM
+    currency_iso: EUR
+-
+    name: Португалия
+    country_iso: PT
+    currency_iso: EUR
+-
+    name: Реюньон
+    country_iso: RE
+    currency_iso: EUR
+-
+    name: Словения
+    country_iso: SI
+    currency_iso: EUR
+-
+    name: Словакия
+    country_iso: SK
+    currency_iso: EUR
+-
+    name: Сан-Марино
+    country_iso: SM
+    currency_iso: EUR
+-
+    name: 'Французские южные территории'
+    country_iso: TF
+    currency_iso: EUR
+-
+    name: 'Государство-город Ватикан'
+    country_iso: VA
+    currency_iso: EUR
+-
+    name: Майот
+    country_iso: YT
+    currency_iso: EUR
+-
+    name: Индия
+    country_iso: IN
+    currency_iso: INR
+-
+    name: Казахстан
+    country_iso: KZ
+    currency_iso: KZT
+-
+    name: Канада
+    country_iso: CA
+    currency_iso: CAD
+-
+    name: Киргизия
+    country_iso: KG
+    currency_iso: KGS
+-
+    name: Китай
+    country_iso: CN
+    currency_iso: CNY
+-
+    name: 'Республика Молдова'
+    country_iso: MD
+    currency_iso: MDL
+-
+    name: Антарктика
+    country_iso: AQ
+    currency_iso: NOK
+-
+    name: 'Остров Буве'
+    country_iso: BV
+    currency_iso: NOK
+-
+    name: Норвегия
+    country_iso: 'NO'
+    currency_iso: NOK
+-
+    name: 'Шпицберген и Ян-Майен'
+    country_iso: SJ
+    currency_iso: NOK
+-
+    name: Польша
+    country_iso: PL
+    currency_iso: PLN
+-
+    name: Румыния
+    country_iso: RO
+    currency_iso: RON
+-
+    name: 'Бруней Даруссалам'
+    country_iso: BN
+    currency_iso: SGD
+-
+    name: Сингапур
+    country_iso: SG
+    currency_iso: SGD
+-
+    name: Таджикистан
+    country_iso: TJ
+    currency_iso: TJS
+-
+    name: Турция
+    country_iso: TR
+    currency_iso: TRY
+-
+    name: Туркменистан
+    country_iso: TM
+    currency_iso: TMT
+-
+    name: Узбекистан
+    country_iso: UZ
+    currency_iso: UZS
+-
+    name: Украина
+    country_iso: UA
+    currency_iso: UAH
+-
+    name: Чехия
+    country_iso: CZ
+    currency_iso: CZK
+-
+    name: Швеция
+    country_iso: SE
+    currency_iso: SEK
+-
+    name: Швейцария
+    country_iso: CH
+    currency_iso: CHF
+-
+    name: Лихтенштейн
+    country_iso: LI
+    currency_iso: CHF
+-
+    name: Намибия
+    country_iso: NA
+    currency_iso: ZAR
+-
+    name: Лесото
+    country_iso: LS
+    currency_iso: ZAR
+-
+    name: Эсватини
+    country_iso: SZ
+    currency_iso: ZAR
+-
+    name: 'Южная Африка'
+    country_iso: ZA
+    currency_iso: ZAR
+-
+    name: 'Республика Корея'
+    country_iso: KR
+    currency_iso: KRW
+-
+    name: Япония
+    country_iso: JP
+    currency_iso: JPY

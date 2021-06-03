@@ -1,0 +1,99 @@
+-
+    name: 'Австралийский доллар'
+    currency_iso: AUD
+-
+    name: 'Азербайджанский манат'
+    currency_iso: AZN
+-
+    name: 'Фунт стерлингов'
+    currency_iso: GBP
+-
+    name: 'Армянский драм'
+    currency_iso: AMD
+-
+    name: 'Белорусский рубль'
+    currency_iso: BYN
+-
+    name: 'Болгарский лев'
+    currency_iso: BGN
+-
+    name: 'Бразильский реал'
+    currency_iso: BRL
+-
+    name: Форинт
+    currency_iso: HUF
+-
+    name: 'Гонконгский доллар'
+    currency_iso: HKD
+-
+    name: 'Датская крона'
+    currency_iso: DKK
+-
+    name: 'Доллар США'
+    currency_iso: USD
+-
+    name: Евро
+    currency_iso: EUR
+-
+    name: 'Индийская рупия'
+    currency_iso: INR
+-
+    name: Тенге
+    currency_iso: KZT
+-
+    name: 'Канадский доллар'
+    currency_iso: CAD
+-
+    name: Сом
+    currency_iso: KGS
+-
+    name: 'Китайский юань'
+    currency_iso: CNY
+-
+    name: 'Молдавский лей'
+    currency_iso: MDL
+-
+    name: 'Норвежская крона'
+    currency_iso: NOK
+-
+    name: Злотый
+    currency_iso: PLN
+-
+    name: 'Румынский лей'
+    currency_iso: RON
+-
+    name: 'Сингапурский доллар'
+    currency_iso: SGD
+-
+    name: Сомони
+    currency_iso: TJS
+-
+    name: 'Турецкая лира'
+    currency_iso: TRY
+-
+    name: 'Туркменский новый манат'
+    currency_iso: TMT
+-
+    name: 'Узбекский сум'
+    currency_iso: UZS
+-
+    name: Гривна
+    currency_iso: UAH
+-
+    name: 'Чешская крона'
+    currency_iso: CZK
+-
+    name: 'Шведская крона'
+    currency_iso: SEK
+-
+    name: 'Швейцарский франк'
+    currency_iso: CHF
+-
+    name: Рэнд
+    currency_iso: ZAR
+-
+    name: Вона
+    currency_iso: KRW
+-
+    name: Иена
+    currency_iso: JPY
