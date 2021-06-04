@@ -59,6 +59,10 @@
     country_iso: JE
     currency_iso: GBP
 -
+    name: 'Ангола'
+    country_iso: 'AO'
+    currency_iso: AON
+-
     name: Армения
     country_iso: AM
     currency_iso: AMD
@@ -303,6 +307,10 @@
     country_iso: IN
     currency_iso: INR
 -
+    name: Исландия
+    country_iso: IS
+    currency_iso: ISK
+-
     name: Казахстан
     country_iso: KZ
     currency_iso: KZT
@@ -318,6 +326,14 @@
     name: Китай
     country_iso: CN
     currency_iso: CNY
+-
+    name: Кувейт
+    country_iso: KW
+    currency_iso: KWD
+-
+    name: Ливан
+    country_iso: LB
+    currency_iso: LBP
 -
     name: 'Республика Молдова'
     country_iso: MD
@@ -354,6 +370,10 @@
     name: Сингапур
     country_iso: SG
     currency_iso: SGD
+-
+    name: Суринам
+    country_iso: SR
+    currency_iso: SRD
 -
     name: Таджикистан
     country_iso: TJ

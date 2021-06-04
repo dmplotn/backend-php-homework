@@ -1,99 +1,156 @@
 -
     name: 'Австралийский доллар'
     currency_iso: AUD
+    currency_cbrf_id: R01010
 -
     name: 'Азербайджанский манат'
     currency_iso: AZN
+    currency_cbrf_id: R01020A
 -
-    name: 'Фунт стерлингов'
+    name: 'Фунт стерлингов Соединенного королевства'
     currency_iso: GBP
+    currency_cbrf_id: R01035
+-
+    name: 'Ангольская новая кванза'
+    currency_iso: AON
+    currency_cbrf_id: R01040F
 -
     name: 'Армянский драм'
     currency_iso: AMD
+    currency_cbrf_id: R01060
 -
     name: 'Белорусский рубль'
     currency_iso: BYN
+    currency_cbrf_id: R01090B
 -
     name: 'Болгарский лев'
     currency_iso: BGN
+    currency_cbrf_id: R01100
 -
     name: 'Бразильский реал'
     currency_iso: BRL
+    currency_cbrf_id: R01115
 -
-    name: Форинт
+    name: 'Венгерский форинт'
     currency_iso: HUF
+    currency_cbrf_id: R01135
 -
     name: 'Гонконгский доллар'
     currency_iso: HKD
+    currency_cbrf_id: R01200
 -
     name: 'Датская крона'
     currency_iso: DKK
+    currency_cbrf_id: R01215
 -
     name: 'Доллар США'
     currency_iso: USD
+    currency_cbrf_id: R01235
 -
     name: Евро
     currency_iso: EUR
+    currency_cbrf_id: R01239
 -
     name: 'Индийская рупия'
     currency_iso: INR
+    currency_cbrf_id: R01270
 -
-    name: Тенге
+    name: 'Исландская крона'
+    currency_iso: ISK
+    currency_cbrf_id: R01310
+-
+    name: 'Казахстанский тенге'
     currency_iso: KZT
+    currency_cbrf_id: R01335
 -
     name: 'Канадский доллар'
     currency_iso: CAD
+    currency_cbrf_id: R01350
 -
-    name: Сом
+    name: 'Киргизский сом'
     currency_iso: KGS
+    currency_cbrf_id: R01370
 -
     name: 'Китайский юань'
     currency_iso: CNY
+    currency_cbrf_id: R01375
+-
+    name: 'Кувейтский динар'
+    currency_iso: KWD
+    currency_cbrf_id: R01390
+-
+    name: 'Ливанский фунт'
+    currency_iso: LBP
+    currency_cbrf_id: R01420
+-
+    name: 'Литовский талон'
+    currency_iso: ''
+    currency_cbrf_id: R01436
 -
     name: 'Молдавский лей'
     currency_iso: MDL
+    currency_cbrf_id: R01500
 -
     name: 'Норвежская крона'
     currency_iso: NOK
+    currency_cbrf_id: R01535
 -
-    name: Злотый
+    name: 'Польский злотый'
     currency_iso: PLN
+    currency_cbrf_id: R01565
 -
     name: 'Румынский лей'
     currency_iso: RON
+    currency_cbrf_id: R01585F
 -
     name: 'Сингапурский доллар'
     currency_iso: SGD
+    currency_cbrf_id: R01625
 -
-    name: Сомони
+    name: 'Суринамский доллар'
+    currency_iso: SRD
+    currency_cbrf_id: R01665A
+-
+    name: 'Таджикский сомони'
     currency_iso: TJS
+    currency_cbrf_id: R01670
 -
     name: 'Турецкая лира'
     currency_iso: TRY
+    currency_cbrf_id: R01700J
 -
-    name: 'Туркменский новый манат'
+    name: 'Новый туркменский манат'
     currency_iso: TMT
+    currency_cbrf_id: R01710A
 -
     name: 'Узбекский сум'
     currency_iso: UZS
+    currency_cbrf_id: R01717
 -
-    name: Гривна
+    name: 'Украинская гривна'
     currency_iso: UAH
+    currency_cbrf_id: R01720
 -
     name: 'Чешская крона'
     currency_iso: CZK
+    currency_cbrf_id: R01760
 -
     name: 'Шведская крона'
     currency_iso: SEK
+    currency_cbrf_id: R01770
 -
     name: 'Швейцарский франк'
     currency_iso: CHF
+    currency_cbrf_id: R01775
 -
-    name: Рэнд
+    name: 'Южноафриканский рэнд'
     currency_iso: ZAR
+    currency_cbrf_id: R01810
 -
-    name: Вона
+    name: 'Вон Республики Корея'
     currency_iso: KRW
+    currency_cbrf_id: R01815
 -
-    name: Иена
+    name: 'Японская иена'
     currency_iso: JPY
+    currency_cbrf_id: R01820

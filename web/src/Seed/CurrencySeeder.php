@@ -25,6 +25,7 @@ class CurrencySeeder extends Seeder
                 $currencyModel = new Currency();
                 $currencyModel->name = $currency['name'];
                 $currencyModel->iso = $currency['currency_iso'];
+                $currencyModel->cbrf_id = $currency['currency_cbrf_id'];
                 $currencyModel->save();
             }
         };
