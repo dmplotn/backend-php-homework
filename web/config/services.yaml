@@ -9,4 +9,7 @@ services:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
-            - '../src/Service'
+            - '../src/Service/*'
+    
+    app.service.cbrf_currency_loader:
+        class: App\Service\CBRFRatesLoader
