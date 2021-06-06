@@ -18,7 +18,7 @@ class CBRFPeriodRatesLoader
     public function load(Carbon $beginDate, Carbon $endDate, string $cbrfId): array
     {
         if ($beginDate > $endDate) {
-            throw new \DomainException('Invalid dates');
+            throw new \LogicException('Invalid dates.');
         }
 
         $formattedBeginDate = $beginDate->format('d/m/Y');
@@ -37,10 +37,11 @@ class CBRFPeriodRatesLoader
         $result = [];
 
         foreach ($items as $item) {
-            var_dump((string) $item->Value);
+            $value = (float) (string) str_replace(',', '.', $item->Value);
+            $nominal = (int) (string) $item->Nominal;
             $result[] = [
                 'cbrf_id' => $cbrfId,
-                'rate' => (float) (string) str_replace(',', '.', $item->Value),
+                'rate' => $value / $nominal,
                 'date' => (string) $item->attributes()
             ];
         }
