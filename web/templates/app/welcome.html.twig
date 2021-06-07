@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block body %}
+  <div id="currency-map"></div>
+  <div id="map-data" data-map-data="{{ data|json_encode }}"></div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://www.amcharts.com/lib/4/geodata/lang/RU.js"></script>
+  <script src="assets/js/currencyMap/map.js"></script>
+  <script src="assets/js/currencyMap/init.js"></script>
+{% endblock %}
