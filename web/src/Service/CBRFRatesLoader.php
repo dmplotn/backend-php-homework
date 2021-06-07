@@ -6,7 +6,22 @@ use Carbon\Carbon;
 
 class CBRFPeriodRatesLoader
 {
-    private const API_URL = 'http://www.cbr.ru/scripts/XML_dynamic.asp';
+    private const DYNAMIC_API_URL = 'http://www.cbr.ru/scripts/XML_dynamic.asp';
+    private const DAILY_API_URL = 'http://www.cbr.ru/scripts/XML_daily.asp';
+
+    /**
+     * @return Carbon
+     */
+    public function getLastUpdateDate(): Carbon
+    {
+        $result = simplexml_load_file(self::DAILY_API_URL);
+
+        if (!$result) {
+            throw new \RuntimeException('CBRF api error.');
+        }
+
+        return Carbon::createFromFormat('d.m.Y', (string) $result->attributes()[0]);
+    }
 
     /**
      * @param Carbon $beginDate
@@ -15,7 +30,7 @@ class CBRFPeriodRatesLoader
      *
      * @return array
      */
-    public function load(Carbon $beginDate, Carbon $endDate, string $cbrfId): array
+    public function loadRatesForPeriod(Carbon $beginDate, Carbon $endDate, string $cbrfId): array
     {
         if ($beginDate > $endDate) {
             throw new \LogicException('Invalid dates.');
@@ -26,7 +41,7 @@ class CBRFPeriodRatesLoader
 
         $queryParts = ["date_req1={$formattedBeginDate}", "date_req2={$formattedEndDate}", "VAL_NM_RQ={$cbrfId}"];
         $query = '?' . implode('&', $queryParts);
-        $url = self::API_URL . $query;
+        $url = self::DYNAMIC_API_URL . $query;
 
         $items = simplexml_load_file($url);
 
@@ -42,7 +57,7 @@ class CBRFPeriodRatesLoader
             $result[] = [
                 'cbrf_id' => $cbrfId,
                 'rate' => $value / $nominal,
-                'date' => (string) $item->attributes()
+                'date' => Carbon::createFromFormat('d.m.Y', (string) $item->attributes())
             ];
         }
 
