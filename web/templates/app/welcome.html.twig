@@ -1,42 +1,5 @@
 {% extends "base.html.twig" %}
 
-{# {% block title %}Главная{% endblock %} #}
-
-{# {% block content %}
-  <div id="map-data" data-map-data="{{ mapData|json_encode }}"></div>
-  <div id="currency-map" class="mb-5"></div>
-  <div class="container-fluid mb-5">
-    <table id="currency-table" class="table">
-      <thead>
-        <tr class="d-flex">
-          <th class="col-5" scope="col">Название валюты</th>
-          <th class="col-4" scope="col">Код валюты</th>
-          <th class="col-3" scope="col">Курс валюты</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in tableData %}
-          <tr class="d-flex">
-            <td class="col-5"><a href="#" class="link-dark">{{ item.currencyName }}</a></td>
-            <td class="col-4">{{ item.currencyIso }}</td>
-            <td class="col-3">{{ item.currencyRate|number_format(2) }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-{% endblock %}
-
-{% block scripts %}
-  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-  <script src="https://www.amcharts.com/lib/4/geodata/lang/RU.js"></script>
-  <script src="assets/js/currencyMap/map.js"></script>
-  <script src="assets/js/currencyMap/init.js"></script>
-{% endblock %} #}
-
 {% block content %}
   <div class="row align-items-md-stretch">
     <div class="col-md-6">
