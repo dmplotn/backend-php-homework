@@ -8,5 +8,6 @@ currencies_index:
 
 currencies_show:
    path: /currencies/{id}
+   controller: App\Controller\CurrencyController::show
    requirements:
-        page: '\d+'
+        id: '\d+'

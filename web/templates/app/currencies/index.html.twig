@@ -17,7 +17,7 @@
       <tbody>
         {% for item in tableData %}
           <tr class="d-flex">
-            <td class="col-5"><a href="#" class="link-dark">{{ item.currencyName }}</a></td>
+            <td class="col-5"><a href="{{ path('currencies_show', {id: item.currencyId}) }}" class="link-dark">{{ item.currencyName }}</a></td>
             <td class="col-4">{{ item.currencyIso }}</td>
             <td class="col-3">{{ item.currencyRate|number_format(2) }}</td>
           </tr>

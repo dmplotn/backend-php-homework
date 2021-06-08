@@ -19,7 +19,7 @@ const displayMap = (data) => {
   chart.zoomControl = new am4maps.ZoomControl();
 
   // Add chart formatter
-  chart.numberFormatter.numberFormat = "#.00";
+  // chart.numberFormatter.numberFormat = "#.00";
 
   // Series for World map
   var worldSeries = chart.series.push(new am4maps.MapPolygonSeries());
@@ -33,7 +33,7 @@ const displayMap = (data) => {
   polygonTemplate.tooltipHTML = `
     <strong>{name}</strong><hr>
     Текущий курс {currencyIso} к RUB: <strong>{currencyRate}</strong><br>
-    <a href="#" style="color: white">Подробнее о валюте</a>
+    <a href="/currencies/{currencyId}" style="color: white">Подробнее о валюте</a>
   `;
 
   // Set up tooltips
@@ -75,11 +75,18 @@ const displayMap = (data) => {
 const getMapData = () => {
   const data = JSON.parse(document.getElementById('map-data').dataset.mapData);
 
-  return data.map(({ countryIso, currencyIso, currencyRate, currencyId }) => ({
+  return data.map(({ countryIso, currencyIso, currencyRate, currencyId }) => {
+    const formattedRate = (new Intl.NumberFormat('ru-RU', {
+      minimumFractionDigits: 2, maximumFractionDigits: 2 
+    })
+    .format(currencyRate));
+
+    return {
       id: countryIso,
-      currencyRate: Math.round(currencyRate * 100) / 100,
+      currencyRate: formattedRate,
       currencyIso,
       currencyId,
       available: true
-  }));
+    }
+  });
 };
