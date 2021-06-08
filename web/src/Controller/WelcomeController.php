@@ -10,16 +10,26 @@ class WelcomeController extends AbstractController
     public function index()
     {
         $currentRatesData = Currency::currentRatesData();
-        $data = $currentRatesData->map(function ($item) {
+        $mapData = $currentRatesData->map(function ($item) {
             return [
-                'currencyId' => $item->currency_id,
                 'currencyIso' => $item->currency_iso,
-                'currencyRate' => round($item->currency_rate, 2),
+                'currencyRate' => $item->currency_rate,
                 'countryIso' => $item->country_iso
             ];
         })
         ->toArray();
 
-        return $this->render('app/welcome.html.twig', compact('data'));
+        $tableData = $currentRatesData
+            ->map(function ($item) {
+                return [
+                    'currencyName' => $item->currency_name,
+                    'currencyIso' => $item->currency_iso,
+                    'currencyRate' => $item->currency_rate
+                ];
+            })
+            ->unique('currencyName')
+            ->toArray();
+
+        return $this->render('app/welcome.html.twig', compact('mapData', 'tableData'));
     }
 }

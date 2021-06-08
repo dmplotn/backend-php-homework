@@ -18,6 +18,9 @@ const displayMap = (data) => {
   // Add zoom control
   chart.zoomControl = new am4maps.ZoomControl();
 
+  // Add chart formatter
+  chart.numberFormatter.numberFormat = "#.00";
+
   // Series for World map
   var worldSeries = chart.series.push(new am4maps.MapPolygonSeries());
   worldSeries.exclude = ["AQ"];
@@ -74,7 +77,7 @@ const getMapData = () => {
 
   return data.map(({ countryIso, currencyIso, currencyRate, currencyId }) => ({
       id: countryIso,
-      currencyRate,
+      currencyRate: Math.round(currencyRate * 100) / 100,
       currencyIso,
       currencyId,
       available: true

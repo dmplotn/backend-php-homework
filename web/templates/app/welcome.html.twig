@@ -2,9 +2,29 @@
 
 {% block title %}Главная{% endblock %}
 
-{% block body %}
-  <div id="currency-map"></div>
-  <div id="map-data" data-map-data="{{ data|json_encode }}"></div>
+{% block content %}
+  <div id="map-data" data-map-data="{{ mapData|json_encode }}"></div>
+  <div id="currency-map" class="mb-5"></div>
+  <div class="container-fluid mb-5">
+    <table id="currency-table" class="table">
+      <thead>
+        <tr class="d-flex">
+          <th class="col-5" scope="col">Название валюты</th>
+          <th class="col-4" scope="col">Код валюты</th>
+          <th class="col-3" scope="col">Курс валюты</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in tableData %}
+          <tr class="d-flex">
+            <td class="col-5"><a href="#" class="link-dark">{{ item.currencyName }}</a></td>
+            <td class="col-4">{{ item.currencyIso }}</td>
+            <td class="col-3">{{ item.currencyRate|number_format(2) }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}
 
 {% block scripts %}
