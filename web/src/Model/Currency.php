@@ -4,7 +4,6 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use WouterJ\EloquentBundle\Facade\Db;
-use App\Model\CurrencyRate;
 
 class Currency extends Model
 {
@@ -24,7 +23,9 @@ class Currency extends Model
                 'currencies.id as currency_id',
                 'currencies.iso as currency_iso',
                 'currencies.cbrf_id as currency_cbrf_id',
+                'currencies.name as currency_name',
                 'countries.id as country_id',
+                'countries.name as country_name',
                 'countries.iso as country_iso',
                 'currency_rates.currency_rate',
                 'currency_rates.date'
