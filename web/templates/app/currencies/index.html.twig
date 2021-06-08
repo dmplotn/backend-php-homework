@@ -1,17 +1,17 @@
 {% extends "base.html.twig" %}
 
-{# {% block title %}Главная{% endblock %} #}
+{% block title %}Курсы валют{% endblock %}
 
-{# {% block content %}
+{% block content %}
   <div id="map-data" data-map-data="{{ mapData|json_encode }}"></div>
   <div id="currency-map" class="mb-5"></div>
   <div class="container-fluid mb-5">
-    <table id="currency-table" class="table">
+    <table id="currency-table" class="table table-striped table-sm">
       <thead>
         <tr class="d-flex">
           <th class="col-5" scope="col">Название валюты</th>
           <th class="col-4" scope="col">Код валюты</th>
-          <th class="col-3" scope="col">Курс валюты</th>
+          <th class="col-3" scope="col">Текущий курс валюты к рублю</th>
         </tr>
       </thead>
       <tbody>
@@ -35,27 +35,4 @@
   <script src="https://www.amcharts.com/lib/4/geodata/lang/RU.js"></script>
   <script src="assets/js/currencyMap/map.js"></script>
   <script src="assets/js/currencyMap/init.js"></script>
-{% endblock %} #}
-
-{% block content %}
-  <div class="row align-items-md-stretch">
-    <div class="col-md-6">
-      <div class="h-100 p-5 bg-light border rounded-3">
-        <h2 class="display-5">Текущие курсы валют</h1>
-        <p class="lead">На нашем сайте вы можете узнать о текущих курсах валют Центрального банка России.</p>
-        <p class="lead">
-          <a class="btn btn-outline-secondary" href="/currencies" role="button">Подробнее</a>
-        </p>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="h-100 p-5 bg-light border rounded-3">
-        <h2 class="display-5">Валютный обменник</h1>
-        <p class="lead">Вы можете совершить обмен валют по текущему курсу.</p>
-        <p class="lead">
-          <a class="btn btn-outline-secondary" href="#" role="button">Подробнее</a>
-        </p>
-      </div>
-    </div>
-  </div>
 {% endblock %}
