@@ -19,7 +19,13 @@
           <tr class="d-flex">
             <td class="col-5"><a href="{{ path('currencies_show', {id: item.currencyId}) }}" class="link-dark">{{ item.currencyName }}</a></td>
             <td class="col-4">{{ item.currencyIso }}</td>
-            <td class="col-3">{{ item.currencyRate|number_format(2) }}</td>
+            <td class="col-3">
+              {% if item.currencyRate is null %}
+                Нет данных
+              {% else %}
+                {{ item.currencyRate|number_format(2) }}
+              {% endif %}
+            </td>
           </tr>
         {% endfor %}
       </tbody>

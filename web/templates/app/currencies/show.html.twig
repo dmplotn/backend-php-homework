@@ -29,11 +29,13 @@
             </tr>
             <tr class="d-flex">
                 <th class="col-6">Текущий курс валюты к рублю</th>
-                {% if currencyData.currencyRate is null %}
-                    <td class="col-6">Нет данных</td>
-                {% else %}
-                    <td class="col-6">{{ currencyData.currencyRate|number_format(2)}} <small>на {{ currencyData.lastUpdateRateDate }}</small></td>
-                {% endif %}
+                <td class="col-6">                    
+                    {% if currencyData.currencyRate is null %}
+                        Нет данных
+                    {% else %}
+                        {{ currencyData.currencyRate|number_format(2) }} <small>на {{ currencyData.lastUpdateRateDate }}</small>
+                    {% endif %}
+                </td>
             </tr>
             <tr class="d-flex">
                 <th class="col-6">Страны в которых валюта является основной</th>

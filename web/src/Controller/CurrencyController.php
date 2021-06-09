@@ -10,6 +10,7 @@ class CurrencyController extends AbstractController
     public function index()
     {
         $currentRatesData = Currency::currentRatesData();
+
         $mapData = $currentRatesData
             ->get()
             ->map(function ($item) {
@@ -50,6 +51,7 @@ class CurrencyController extends AbstractController
 
         $chartData = $currencyRates
             ->get()
+            ->filter(fn($item) => $item->currency_rate !== null)
             ->map(function ($item) {
                 return [
                     'currencyRate' => $item->currency_rate,

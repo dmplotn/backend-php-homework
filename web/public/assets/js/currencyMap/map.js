@@ -73,11 +73,16 @@ const getMapData = () => {
   const data = JSON.parse(document.getElementById('map-data').dataset.mapData);
 
   return data.map(({ countryIso, currencyIso, currencyRate, currencyId }) => {
-    const formatter = new Intl.NumberFormat('ru-RU', {
-      minimumFractionDigits: 2, maximumFractionDigits: 2 
-    });
+    let formattedRate;
+    if (currencyRate) {
+      const formatter = new Intl.NumberFormat('ru-RU', {
+        minimumFractionDigits: 2, maximumFractionDigits: 2 
+      });
 
-    const formattedRate = formatter.format(currencyRate).replace(',', '.');
+      formattedRate = formatter.format(currencyRate).replace(',', '.');
+    } else {
+      formattedRate = 'Нет данных';
+    }
 
     return {
       id: countryIso,

@@ -36,11 +36,14 @@ class Currency extends Model
                 'currency_rates.date'
             )
             ->join('countries', 'currencies.id', '=', 'countries.currency_id')
-            ->join('currency_rates', 'currencies.id', '=', 'currency_rates.currency_id')
+            ->leftJoin('currency_rates', 'currencies.id', '=', 'currency_rates.currency_id')
             ->joinSub($latestCurrencyRates, 'latest_currency_rates', function ($join) {
                 $join
                     ->on('currency_rates.currency_id', '=', 'latest_currency_rates.currency_id')
-                    ->on('currency_rates.date', '=', 'latest_currency_rates.date');
+                    ->where(function ($query) {
+                        $query->whereNull('currency_rates.date')
+                            ->orWhere('currency_rates.date', '=', DB::raw('latest_currency_rates.date'));
+                    });
             });
     }
 }

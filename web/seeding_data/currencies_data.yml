@@ -83,10 +83,6 @@
     currency_iso: LBP
     currency_cbrf_id: R01420
 -
-    name: 'Литовский талон'
-    currency_iso: ''
-    currency_cbrf_id: R01436
--
     name: 'Молдавский лей'
     currency_iso: MDL
     currency_cbrf_id: R01500

@@ -49,9 +49,17 @@ class LoadCurrencyRatesCommand extends Command
 
             foreach ($columnItems as $item) {
                 $rates = $loader->loadRatesForPeriod($beginDate, $endDate, $item->cbrf_id);
+                $currencyId = Currency::where('cbrf_id', $item->cbrf_id)->value('id');
+
+                if ($rates === []) {
+                    $currencyRateModel = new CurrencyRate();
+                    $currencyRateModel->currency_rate = null;
+                    $currencyRateModel->date = null;
+                    $currencyRateModel->currency_id = $currencyId;
+                    $currencyRateModel->save();
+                }
 
                 foreach ($rates as $rate) {
-                    $currencyId = Currency::where('cbrf_id', $rate['cbrf_id'])->value('id');
                     $currencyRateModel = new CurrencyRate();
                     $currencyRateModel->currency_rate = $rate['rate'];
                     $currencyRateModel->date = $rate['date'];

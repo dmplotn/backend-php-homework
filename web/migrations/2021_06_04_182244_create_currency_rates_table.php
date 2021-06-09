@@ -15,8 +15,8 @@ class CreateCurrencyRatesTable extends Migration
     {
         Schema::create('currency_rates', function (Blueprint $table) {
             $table->id();
-            $table->decimal('currency_rate', 15, 4);
-            $table->date('date');
+            $table->decimal('currency_rate', 15, 4)->nullable();
+            $table->date('date')->nullable();
             $table->foreignId('currency_id')
                 ->constrained()
                 ->onUpdate('cascade')
