@@ -18,9 +18,6 @@ const displayMap = (data) => {
   // Add zoom control
   chart.zoomControl = new am4maps.ZoomControl();
 
-  // Add chart formatter
-  // chart.numberFormatter.numberFormat = "#.00";
-
   // Series for World map
   var worldSeries = chart.series.push(new am4maps.MapPolygonSeries());
   worldSeries.exclude = ["AQ"];
@@ -52,14 +49,14 @@ const displayMap = (data) => {
   legend.padding(10, 15, 10, 15);
   legend.data = [{
     "name": "Страны с доступным курсом валют",
-    "fill":"#9EAED8"
+    "fill":"#67b7dc"
   }];
   legend.itemContainers.template.clickable = false;
   legend.itemContainers.template.focusable = false;
 
   polygonTemplate.adapter.add("fill", function(fill, target) {
     if (target.dataItem.dataContext && target.dataItem.dataContext.available) {
-      return am4core.color("#9EAED8");
+      return am4core.color("#67b7dc");
     }
     return fill;
   });
@@ -76,10 +73,11 @@ const getMapData = () => {
   const data = JSON.parse(document.getElementById('map-data').dataset.mapData);
 
   return data.map(({ countryIso, currencyIso, currencyRate, currencyId }) => {
-    const formattedRate = (new Intl.NumberFormat('ru-RU', {
+    const formatter = new Intl.NumberFormat('ru-RU', {
       minimumFractionDigits: 2, maximumFractionDigits: 2 
-    })
-    .format(currencyRate));
+    });
+
+    const formattedRate = formatter.format(currencyRate).replace(',', '.');
 
     return {
       id: countryIso,

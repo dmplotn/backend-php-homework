@@ -12,6 +12,11 @@ class Currency extends Model
         return $this->hasMany(Country::class);
     }
 
+    public function rates()
+    {
+        return $this->hasMany(CurrencyRate::class);
+    }
+
     public static function currentRatesData()
     {
         $latestCurrencyRates = Db::table('currency_rates')
@@ -36,7 +41,6 @@ class Currency extends Model
                 $join
                     ->on('currency_rates.currency_id', '=', 'latest_currency_rates.currency_id')
                     ->on('currency_rates.date', '=', 'latest_currency_rates.date');
-            })
-            ->get();
+            });
     }
 }

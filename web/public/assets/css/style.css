@@ -6,3 +6,11 @@
 #currency-map hr {
     all: revert;
 }
+
+#currency-chart {
+    height: 500px;
+}
+
+#currency-chart-range-selector {
+    height: 500px;
+}
