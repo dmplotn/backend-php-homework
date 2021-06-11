@@ -123,11 +123,11 @@ const validateChangeValueInput = (state) => {
 };
 
 const validateOrderNameInput = (state) => {
-  const pattern = /^[A-zА-я]+(?: [A-zА-я]+)?$/;
+  const length = state.orderNameInput.value.length;
 
-  if (!state.orderNameInput.value.match(pattern)) {
+  if (length < 2 || length > 100) {
     state.orderNameInput.valid = false;
-    state.orderNameInput.error = 'Значение не соостветствует имени';
+    state.orderNameInput.error = 'Длина имени от 2 до 100';
     return false;
   }
 
@@ -149,7 +149,7 @@ const validateOrderEmailInput = (state) => {
 };
 
 const validateOrderPhoneNumberInput = (state) => {
-  const pattern = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+  const pattern = /^\+?[78][-\(]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/;
 
   if (!state.orderPhoneNumberInput.value.match(pattern)) {
     state.orderPhoneNumberInput.valid = false;

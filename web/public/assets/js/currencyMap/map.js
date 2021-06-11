@@ -48,7 +48,7 @@ const displayMap = (data) => {
   legend.align = "right";
   legend.padding(10, 15, 10, 15);
   legend.data = [{
-    "name": "Страны с доступным курсом валют",
+    "name": "Страны с доступной информацией",
     "fill":"#67b7dc"
   }];
   legend.itemContainers.template.clickable = false;

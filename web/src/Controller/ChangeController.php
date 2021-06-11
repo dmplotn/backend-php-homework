@@ -9,6 +9,11 @@ class ChangeController extends AbstractController
 {
     public function index()
     {
+        session_start();
+        $message = $_SESSION['message'] ?? null;
+        unset($_SESSION['message']);
+        session_destroy();
+
         $currentRatesData = Currency::currentRatesData()
         ->get()
         ->unique('currency_id')
@@ -24,6 +29,6 @@ class ChangeController extends AbstractController
         ->values()
         ->toArray();
 
-        return $this->render('app/change.html.twig', compact('currentRatesData'));
+        return $this->render('app/change.html.twig', compact('message', 'currentRatesData'));
     }
 }

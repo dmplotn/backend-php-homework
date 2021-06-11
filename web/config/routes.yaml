@@ -15,3 +15,8 @@ currencies_show:
 change_index:
    path: /change
    controller: App\Controller\ChangeController::index
+
+order_store:
+   path: /order
+   controller: App\Controller\OrderController::store
+   methods: POST

@@ -10,7 +10,7 @@
         <title>Валютные курсы - {% block title %}{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="/">Валютные курсы</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -18,11 +18,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/currencies">Список валют</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/change">Валютный обменник</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container">
+        {% if message is defined and message is not null %}
+            <div class="alert alert-info alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+        <div class="container mt-5">
             {% block content %}{% endblock %}
         </div>
         {% block scripts %}{% endblock %}

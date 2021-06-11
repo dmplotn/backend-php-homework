@@ -4,7 +4,7 @@
 
 {% block content %}
   <div id="current-rates-data" data-current-rates-data="{{ currentRatesData|json_encode }}"></div>
-  <form action="" id="change-form">
+  <form method="POST" action="/order" id="change-form">
     <input type="hidden" name="changeResult" id="change-result-input">
     <div class="container-fluid">
       <div class="row">
@@ -21,7 +21,7 @@
             </div>
             <div class="row mb-4 justify-content-center">
               <div class="col-8">
-                <select class="form-select" name="currency" id="currency">
+                <select class="form-select" name="currencyId" id="currency">
                   {% for item in currentRatesData %}
                     <option value="{{ item.currencyId }}">{{ item.currencyName }}</option>
                   {% endfor %}
@@ -62,7 +62,7 @@
             <div class="row mb-4 justify-content-center">
               <div class="col-8">
                 <div class="input-group">
-                  <input type="text" class="form-control"  placeholder="Телефон" id="order-phone-number-input" name="phoneNumber">
+                  <input type="tel" class="form-control"  placeholder="Телефон" id="order-phone-number-input" name="phoneNumber">
                   <div class="invalid-feedback" id="order-phone-number-error"></div>
                 </div>
               </div>
@@ -70,7 +70,7 @@
             <div class="row mb-4 justify-content-center">
               <div class="col-8">
                 <div class="input-group">
-                  <input type="text" class="form-control"  placeholder="E-mail" id="order-email-input" name="email">
+                  <input type="email" class="form-control"  placeholder="E-mail" id="order-email-input" name="email">
                   <div class="invalid-feedback" id="order-email-error"></div>
                 </div>
               </div>

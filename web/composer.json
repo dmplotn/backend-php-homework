@@ -5,7 +5,8 @@
         "symfony/framework-bundle": "^5.3",
         "symfony/twig-bundle": "^5.3",
         "symfony/yaml": "^5.3",
-        "wouterj/eloquent-bundle": "^2.0"
+        "wouterj/eloquent-bundle": "^2.0",
+        "rakit/validation": "^1.4"
     },
     "autoload": {
         "psr-4": {
