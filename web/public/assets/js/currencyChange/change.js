@@ -123,7 +123,7 @@ const validateChangeValueInput = (state) => {
 };
 
 const validateOrderNameInput = (state) => {
-  const pattern = /^[a-z ,.'-]+$/;
+  const pattern = /^[A-zА-я]+(?: [A-zА-я]+)?$/;
 
   if (!state.orderNameInput.value.match(pattern)) {
     state.orderNameInput.valid = false;
