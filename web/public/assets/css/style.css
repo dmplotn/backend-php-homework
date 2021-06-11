@@ -14,3 +14,7 @@
 #currency-chart-range-selector {
     height: 500px;
 }
+
+.left-content {
+    border-right: 1px solid lightslategrey;
+}
