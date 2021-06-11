@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Валютный обменник{% endblock %}
+
+{% block content %}
+    <div id="current-rates-data" data-current-rates-data="{{ currentRatesData|json_encode }}"></div>
+    <div class="container-fluid">
+      <div class="row mb-4 justify-content-center">
+        <div class="col-4">
+          <select class="form-select" name="operation" id="operation">
+            <option value="sell">Продать</option>
+            <option value="buy">Купить</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-4 justify-content-center">
+        <div class="col-4">
+          <select class="form-select" name="currency" id="currency">
+            {% for item in currentRatesData %}
+              <option value="{{ item.currencyId }}">{{ item.currencyName }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="row mb-4 justify-content-center">
+        <div class="col-4">
+          <div class="input-group">
+            <input type="text" class="form-control" id="change-value-input" placeholder="Ваши деньги">
+              <div class="input-group-append">
+              <span class="input-group-text" id="change-value-iso"></span>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <p class="text-center">
+            <span class="fs-5" id="change-result"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/assets/js/currencyChange/change.js"></script>
+{% endblock %}

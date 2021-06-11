@@ -11,3 +11,7 @@ currencies_show:
    controller: App\Controller\CurrencyController::show
    requirements:
         id: '\d+'
+
+change_index:
+   path: /change
+   controller: App\Controller\ChangeController::index
